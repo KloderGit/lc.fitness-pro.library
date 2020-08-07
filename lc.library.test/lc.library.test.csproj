@@ -16,4 +16,7 @@
   <ItemGroup>
     <ProjectReference Include="..\lc.fitness-pro.library\lc.fitness-pro.library.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Integrative\" />
+  </ItemGroup>
 </Project>
