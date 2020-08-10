@@ -12,7 +12,7 @@
     <PackageProjectUrl>https://github.com/KloderGit/lc.fitness-pro.library</PackageProjectUrl>
     <PackageReleaseNotes>get access</PackageReleaseNotes>
     <Title>1C Fpa Rest library</Title>
-    <PackageLicenseUrl>https://github.com/KloderGit/lc.fitness-pro.library</PackageLicenseUrl>
+    <RepositoryType>public</RepositoryType>
     <PackageTags>fpa</PackageTags>
   </PropertyGroup>
 
