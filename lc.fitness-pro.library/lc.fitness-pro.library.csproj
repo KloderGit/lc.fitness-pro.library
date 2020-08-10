@@ -5,15 +5,18 @@
     <RootNamespace>lc.fitness_pro.library</RootNamespace>
     <PackOnBuild>true</PackOnBuild>
     <PackageId>lc.fpa.library</PackageId>
-    <PackageVersion>1.0</PackageVersion>
+    <PackageVersion>1.0.1</PackageVersion>
+    <Version>1.0.1</Version>
     <Authors>KloderGit</Authors>
     <Copyright>KloderGit</Copyright>
     <Owners>KloderGit</Owners>
     <PackageProjectUrl>https://github.com/KloderGit/lc.fitness-pro.library</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/KloderGit/lc.fitness-pro.library</RepositoryUrl>
     <PackageReleaseNotes>get access</PackageReleaseNotes>
     <Title>1C Fpa Rest library</Title>
     <RepositoryType>public</RepositoryType>
     <PackageTags>fpa</PackageTags>
+    <NeutralLanguage>ru-RU</NeutralLanguage>
   </PropertyGroup>
 
   <ItemGroup>
