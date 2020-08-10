@@ -1,11 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using lc.fitness_pro.library.Extension;
 using lc.fitness_pro.library.Interface;
-using lc.fitness_pro.library.Model;
 
 namespace lc.fitness_pro.library
 {
