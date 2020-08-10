@@ -16,7 +16,8 @@
     <Title>1C Fpa Rest library</Title>
     <RepositoryType>public</RepositoryType>
     <PackageTags>fpa</PackageTags>
-    <NeutralLanguage>ru-RU</NeutralLanguage>
+    <NeutralLanguage></NeutralLanguage>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <ItemGroup>
