@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Linq.Expressions;
 using lc.fitness_pro.library;
+using lc.fitness_pro.library.Model;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace lc.library.test
@@ -8,33 +10,30 @@ namespace lc.library.test
     public class QueryStringBuilderTest
     {
         [TestMethod]
-        public void AddKeyDropsOtherParams()
+        public void AddKey()
         {
             var qsb = new QueryStringBuilder();
 
-            var key = Guid.NewGuid().ToString();
+            var key = Guid.NewGuid();
 
-            qsb.AddParam("first", "value");
-            qsb.AddParam("second", "value");
-            qsb.AddParam("key", key);
+            qsb.AddKey(key);
 
-            var pattern = $"(guid'{key}')";
+            var pattern = $"(guid'{key}')?$format=json";
             var result = qsb.Build();
 
             Assert.AreEqual(pattern, result);
         }
 
         [TestMethod]
-        public void AddParamsAproppriateToPattern()
+        public void AddFilter()
         {
             var qsb = new QueryStringBuilder();
+            var key = Guid.NewGuid();
+            Expression<Func<Person, bool>> exp1 = x => x.Key == key;
 
-            var key = Guid.NewGuid().ToString();
+            qsb.AddFilter(exp1);
 
-            qsb.AddParam("first", "value");
-            qsb.AddParam("second", "value");
-
-            var pattern = $"?$first=value&$second=value";
+            var pattern = $"?$filter=Ref_Key eq guid'{key}'&$format=json";
             var result = qsb.Build();
 
             Assert.AreEqual(pattern, result);

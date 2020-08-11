@@ -1,36 +1,50 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
+using lc.fitness_pro.library.Misc;
 
 namespace lc.fitness_pro.library
 {
     public class QueryStringBuilder
     {
         String queryString = String.Empty;
+        string toJson = "$format=json";
+        string key = String.Empty;
+        ICollection<(string Title, string Condition, string Value)> filters = new List<(string Title, string Condition, string Value)>();
 
-        Dictionary<string, string> @params = new Dictionary<string, string>();
+        ExpressionToParamConverter paramConverter = new ExpressionToParamConverter();
 
-
-        public void AddParam(string key, string value)
+        public void AddKey(Guid guid)
         {
-            @params.Add(key, value);
+            key = $"(guid'{guid}')";
+        }
+
+        public void AddFilter(Expression expression)
+        {
+            var convertedExpression = paramConverter.Convert(expression);
+
+            filters.Add(convertedExpression);
         }
 
         public string Build()
         {
-            string result = string.Empty;
+            var filters = GetFilterString();
 
-            var array = @params.Select(x => "$" + x.Key + "=" + x.Value);
-            result = string.Join("&", array);
+            queryString = String.IsNullOrEmpty(key) ? "?" + filters + "&" + toJson : key + "?" + toJson;
 
-            if (@params.Select(x => x.Key.ToUpper()).Contains("KEY"))
-            {
-                var key = @params.First(x => x.Key.ToUpper() == "KEY").Value;
-                result = $"(guid'{key}')";
-                @params.Clear();
-            }
+            return queryString;
+        }
 
-            return result;
+        private string GetFilterString()
+        {
+            if (filters.Any() != true) return String.Empty;
+
+            string filterString = "$filter=";
+            var stringPairs = filters.Select(x => x.Title + " " + x.Condition + " " + x.Value);
+            filterString += String.Join(" and ", stringPairs);
+
+            return filterString;
         }
     }
 }

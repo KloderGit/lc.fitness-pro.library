@@ -56,7 +56,9 @@ namespace lc.fitness_pro.library.Misc
 
             var value = "'" + rightOperand.ToString() + "'";
             if (type == typeof(Guid)) value = $"guid'{rightOperand}'";
-            if (type == typeof(bool) || type == typeof(int)) value = rightOperand.ToString();
+            if (type == typeof(bool)) value = rightOperand.ToString().ToLower();
+            if (type == typeof(int) || type == typeof(decimal)) value = rightOperand.ToString();
+
 
             return value;
         }
