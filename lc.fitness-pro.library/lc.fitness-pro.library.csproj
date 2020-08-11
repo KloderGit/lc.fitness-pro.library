@@ -5,7 +5,7 @@
     <RootNamespace>lc.fitness_pro.library</RootNamespace>
     <PackOnBuild>true</PackOnBuild>
     <PackageId>lc.fpa.library</PackageId>
-    <PackageVersion>1.0.1</PackageVersion>
+    <PackageVersion>1.0.2</PackageVersion>
     <Version>1.0.2</Version>
     <Authors>KloderGit</Authors>
     <Copyright>KloderGit</Copyright>
@@ -16,7 +16,6 @@
     <Title>1C Fpa Rest library</Title>
     <RepositoryType>public</RepositoryType>
     <PackageTags>fpa</PackageTags>
-    <NeutralLanguage></NeutralLanguage>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
 
