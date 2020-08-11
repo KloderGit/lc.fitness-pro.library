@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace>lc.fitness_pro.library</RootNamespace>
-    <PackageId>lc.fpa.library</PackageId>
+    <PackageId>lc.fitness-pro.library</PackageId>
     <PackageVersion>1.0.5</PackageVersion>
     <Authors>KloderGit</Authors>
     <Copyright>KloderGit</Copyright>
