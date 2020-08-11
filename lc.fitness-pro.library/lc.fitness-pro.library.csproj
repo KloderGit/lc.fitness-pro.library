@@ -2,20 +2,14 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <RootNamespace>lc.fitness_pro.library</RootNamespace>
-    <PackageId>lc.fitness-pro.library</PackageId>
-    <PackageVersion>1.0.5</PackageVersion>
     <Authors>KloderGit</Authors>
+    <Company>Fpa</Company>
     <Copyright>KloderGit</Copyright>
-    <Owners>KloderGit</Owners>
     <PackageProjectUrl>https://github.com/KloderGit/lc.fitness-pro.library</PackageProjectUrl>
     <RepositoryUrl>https://github.com/KloderGit/lc.fitness-pro.library</RepositoryUrl>
-    <PackageReleaseNotes>get access</PackageReleaseNotes>
-    <Title>1C Fpa Rest library</Title>
-    <RepositoryType>public</RepositoryType>
-    <PackageTags>fpa</PackageTags>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>1.0.5</Version>
+    <RepositoryType>library</RepositoryType>
+    <Version>1.0.4</Version>
+    <AssemblyVersion>1.0.4.0</AssemblyVersion>
   </PropertyGroup>
 
   <ItemGroup>
