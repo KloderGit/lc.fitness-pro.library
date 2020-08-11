@@ -15,6 +15,7 @@
     <RepositoryType>public</RepositoryType>
     <PackageTags>fpa</PackageTags>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Version>1.0.5</Version>
   </PropertyGroup>
 
   <ItemGroup>
