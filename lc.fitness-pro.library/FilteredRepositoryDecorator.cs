@@ -51,26 +51,9 @@ namespace lc.fitness_pro.library
             return await source.GetByQuery(query);
         }
 
-        public FilteredRepositoryDecorator<T> Top(int count)
-        {
-            QueryStringBuilder.AddParam("top", count.ToString());
-            return this;
-        }
-
         private void PerformFilters()
         {
-            var filterString = string.Empty;
-
-            foreach (var expression in filterExpression)
-            {
-                    var @param = paramConverter.Convert(expression);
-
-                    filterString += String.IsNullOrEmpty(filterString) ?
-                        @param.Item1 + " " + @param.Item2 + " " + $"{param.Item3}"
-                        : " and " + @param.Item1 + " " + @param.Item2 + " " + $"{param.Item3}";
-            }
-
-            QueryStringBuilder.AddParam("filter", filterString);
+            filterExpression.ToList().ForEach(x => QueryStringBuilder.AddFilter(x));
         }
 
     }

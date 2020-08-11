@@ -24,7 +24,7 @@ namespace lc.fitness_pro.library
 
         public async Task<T> GetById(Guid key)
         {
-            QueryStringBuilder.AddParam("key", key.ToString());
+            QueryStringBuilder.AddKey(key);
             var queryString = QueryStringBuilder.Build();
 
             var response = await DoGetRequest(queryString);
@@ -62,7 +62,7 @@ namespace lc.fitness_pro.library
         {
             var client = connection.GetClient();
             var uri = connection.GetURI(typeof(T));
-            var url = uri + "?" + queryString + "&$format=json";
+            var url = uri + queryString;
             var response = await client.GetAsync(url).ConfigureAwait(false);
 
             return response;

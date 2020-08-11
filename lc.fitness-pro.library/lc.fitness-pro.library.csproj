@@ -5,7 +5,7 @@
     <RootNamespace>lc.fitness_pro.library</RootNamespace>
     <PackOnBuild>true</PackOnBuild>
     <PackageId>lc.fpa.library</PackageId>
-    <PackageVersion>1.0.2</PackageVersion>
+    <PackageVersion>1.0.4</PackageVersion>
     <Version>1.0.2</Version>
     <Authors>KloderGit</Authors>
     <Copyright>KloderGit</Copyright>
