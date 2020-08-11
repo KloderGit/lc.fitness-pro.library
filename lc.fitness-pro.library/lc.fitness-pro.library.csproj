@@ -6,7 +6,7 @@
     <PackOnBuild>true</PackOnBuild>
     <PackageId>lc.fpa.library</PackageId>
     <PackageVersion>1.0.1</PackageVersion>
-    <Version>1.0.1</Version>
+    <Version>1.0.2</Version>
     <Authors>KloderGit</Authors>
     <Copyright>KloderGit</Copyright>
     <Owners>KloderGit</Owners>
