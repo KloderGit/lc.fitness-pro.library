@@ -1,12 +1,10 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace>lc.fitness_pro.library</RootNamespace>
-    <PackOnBuild>true</PackOnBuild>
     <PackageId>lc.fpa.library</PackageId>
-    <PackageVersion>1.0.2</PackageVersion>
-    <Version>1.0.2</Version>
+    <PackageVersion>1.0.3</PackageVersion>
     <Authors>KloderGit</Authors>
     <Copyright>KloderGit</Copyright>
     <Owners>KloderGit</Owners>
