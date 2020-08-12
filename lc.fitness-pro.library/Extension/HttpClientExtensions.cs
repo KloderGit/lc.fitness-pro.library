@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
-using lc.fitness_pro.library.Model;
+using lc.fitnesspro.library.Model;
 using Newtonsoft.Json;
 
-namespace lc.fitness_pro.library.Extension
+namespace lc.fitnesspro.library.Extension
 {
     public static class HttpClientExtensions
     {

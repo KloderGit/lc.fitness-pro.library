@@ -4,7 +4,7 @@ using System.Linq.Expressions;
 using System.Reflection;
 using Newtonsoft.Json;
 
-namespace lc.fitness_pro.library.Misc
+namespace lc.fitnesspro.library.Misc
 {
     public class ExpressionToParamConverter
     {

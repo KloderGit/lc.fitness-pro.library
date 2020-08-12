@@ -1,4 +1,4 @@
-﻿namespace lc.fitness_pro.library.Interface
+﻿namespace lc.fitnesspro.library.Interface
 {
     public interface IDocument
     {

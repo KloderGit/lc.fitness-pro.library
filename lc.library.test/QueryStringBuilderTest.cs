@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq.Expressions;
-using lc.fitness_pro.library;
-using lc.fitness_pro.library.Model;
+using lc.fitnesspro.library;
+using lc.fitnesspro.library.Model;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace lc.library.test
