@@ -9,7 +9,7 @@
     <RepositoryUrl>https://github.com/KloderGit/lc.fitness-pro.library</RepositoryUrl>
     <RepositoryType>library</RepositoryType>
     <Version>1.0.5</Version>
-    <AssemblyVersion>1.0.5</AssemblyVersion>
+    <AssemblyVersion>1.0.5.0</AssemblyVersion>
   </PropertyGroup>
 
   <ItemGroup>
