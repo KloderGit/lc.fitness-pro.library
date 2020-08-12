@@ -31,4 +31,4 @@ jobs:
       run: nuget source Add -Name "GitHub" -Source "https://nuget.pkg.github.com/KloderGit/index.json" -UserName KloderGit -Password ${{ secrets.GITHUB_TOKEN }}
       
     - name: Push
-      run: dotnet nuget push -s GitHub -k ${{ secrets.GITHUB_TOKEN }} lc.fitness-pro.library\bin\Release\*.nupkg 
+      run: dotnet nuget push -s GitHub -k ${{ secrets.GITHUB_TOKEN }} .\lc.fitness-pro.library\bin\Release\*.nupkg 
