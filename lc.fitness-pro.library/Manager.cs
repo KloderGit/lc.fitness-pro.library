@@ -3,7 +3,7 @@ using lc.fitnesspro.library.Interface;
 
 namespace lc.fitnesspro.library
 {
-    public class Manager
+    public class Manager : IManager
     {
         private IConnection connection;
 
@@ -17,6 +17,11 @@ namespace lc.fitnesspro.library
             connection = new Connection(new Account(login, pass));
         }
 
+        public Manager(IConnection connection)
+        {
+            _ = connection ?? throw new ArgumentNullException(nameof(connection));
+            this.connection = connection;
+        }
 
         public PersonRepository Person {
             get {
