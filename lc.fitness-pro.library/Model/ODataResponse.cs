@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace lc.fitness_pro.library.Model
+namespace lc.fitnesspro.library.Model
 {
     public class ODataResponse<T>
     {

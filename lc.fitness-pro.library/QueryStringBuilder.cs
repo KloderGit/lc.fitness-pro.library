@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using lc.fitness_pro.library.Misc;
+using lc.fitnesspro.library.Misc;
 
-namespace lc.fitness_pro.library
+namespace lc.fitnesspro.library
 {
     public class QueryStringBuilder
     {

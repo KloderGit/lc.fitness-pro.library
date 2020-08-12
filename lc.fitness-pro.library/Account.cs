@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using lc.fitness_pro.library.Interface;
-using lc.fitness_pro.library.Model;
+using lc.fitnesspro.library.Interface;
+using lc.fitnesspro.library.Model;
 
-namespace lc.fitness_pro.library
+namespace lc.fitnesspro.library
 {
     public class Account : IAccount
     {

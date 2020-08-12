@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 
 using System.Globalization;
-using lc.fitness_pro.library.Interface;
+using lc.fitnesspro.library.Interface;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
 
-namespace lc.fitness_pro.library.Model
+namespace lc.fitnesspro.library.Model
 {
     public class Contract : IDocument
     {

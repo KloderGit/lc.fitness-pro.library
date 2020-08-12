@@ -5,7 +5,7 @@ using System.Globalization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
-namespace lc.fitness_pro.library.Model
+namespace lc.fitnesspro.library.Model
 {
     public partial class Student
     {

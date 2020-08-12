@@ -5,7 +5,7 @@ using System.Globalization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
-namespace lc.fitness_pro.library.Model
+namespace lc.fitnesspro.library.Model
 {
     public partial class Person
     {
@@ -28,7 +28,7 @@ namespace lc.fitness_pro.library.Model
         public string Description { get; set; }
 
         [JsonProperty("ДатаРождения")]
-        public DateTimeOffset Birthday { get; set; }
+        public DateTime Birthday { get; set; }
 
         [JsonProperty("ИНН")]
         public string INN { get; set; }
@@ -58,7 +58,7 @@ namespace lc.fitness_pro.library.Model
         public string FileExtension { get; set; }
 
         [JsonProperty("ДатаПоследнегоИзменения")]
-        public DateTimeOffset ModifyAt { get; set; }
+        public DateTime ModifyAt { get; set; }
 
         [JsonProperty("ОпытЗанятияСпортом")]
         public string SportExpirience { get; set; }

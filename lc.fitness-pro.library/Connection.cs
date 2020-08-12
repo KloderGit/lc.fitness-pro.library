@@ -2,10 +2,10 @@
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
-using lc.fitness_pro.library.Extension;
-using lc.fitness_pro.library.Interface;
+using lc.fitnesspro.library.Extension;
+using lc.fitnesspro.library.Interface;
 
-namespace lc.fitness_pro.library
+namespace lc.fitnesspro.library
 {
     public class Connection : IConnection
     {

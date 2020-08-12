@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Linq;
-using lc.fitness_pro.library.Model;
+using lc.fitnesspro.library.Model;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace lc.library.test

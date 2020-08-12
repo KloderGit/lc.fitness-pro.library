@@ -1,16 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
+using MorseCode.ITask;
 
-namespace lc.fitness_pro.library.Interface
+namespace lc.fitnesspro.library.Interface
 {
     public interface IRepository<T>
     {
-        IConnection Connection { get; }
-        QueryStringBuilder QueryStringBuilder { get; }
-
         Task<T> GetById(Guid key);
         Task<IEnumerable<T>> GetByFilter();
         Task<IEnumerable<T>> GetByQuery(string query);
+
+        IRepository<T> Filter(Expression<Func<T, bool>> expression);
     }
 }
