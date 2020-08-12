@@ -13,7 +13,7 @@ namespace lc.library.test
         [TestMethod]
         public void GetByPhone()
         {
-            var manager = new lcManager("Kloder", "Kaligula2");
+            var manager = new Manager("Kloder", "Kaligula2");
 
             var sdr = manager.Person.GetByPhones(new List<string> { " 8(903)1453412" }).Result;
         }
