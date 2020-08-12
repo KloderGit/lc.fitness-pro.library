@@ -10,6 +10,7 @@
     <RepositoryType>library</RepositoryType>
     <Version>1.0.5</Version>
     <AssemblyVersion>1.0.5.0</AssemblyVersion>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <ItemGroup>
