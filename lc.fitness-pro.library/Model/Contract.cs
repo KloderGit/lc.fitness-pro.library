@@ -24,7 +24,7 @@ namespace lc.fitnesspro.library.Model
         public string Number { get; set; }
 
         [JsonProperty("Date")]
-        public DateTimeOffset SigningDate { get; set; }
+        public DateTime SigningDate { get; set; }
 
         [JsonProperty("Posted")]
         public bool Posted { get; set; }
@@ -33,7 +33,7 @@ namespace lc.fitnesspro.library.Model
         public string RegisterTitle { get; set; }
 
         [JsonProperty("ТипДоговора_Key")]
-        public Guid ContarctTypeKey { get; set; }
+        public Guid ContactTypeKey { get; set; }
 
         [JsonProperty("СуммаДоговора")]
         public decimal Amount { get; set; }
@@ -42,10 +42,10 @@ namespace lc.fitnesspro.library.Model
         public Guid StudentKey { get; set; }
 
         [JsonProperty("ДатаНачала")]
-        public DateTimeOffset StartEducationDate { get; set; }
+        public DateTime StartEducationDate { get; set; }
 
         [JsonProperty("ДатаОкончания")]
-        public DateTimeOffset FinisEducationhDate { get; set; }
+        public DateTime FinisEducationhDate { get; set; }
 
         [JsonProperty("ПрограммаОбучения_Key")]
         public Guid EducationProgramKey { get; set; }
@@ -60,7 +60,7 @@ namespace lc.fitnesspro.library.Model
         public FinancingTypeEnum Financing { get; set; }
 
         [JsonProperty("ДатаЗакрытия")]
-        public DateTimeOffset ExpiredDate { get; set; }
+        public DateTime ExpiredDate { get; set; }
 
         [JsonProperty("Ответственный_Key")]
         public Guid ResponsiblePersonKey { get; set; }
