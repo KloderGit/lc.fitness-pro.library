@@ -49,6 +49,15 @@ namespace lc.fitnesspro.library
             return result.value;
         }
 
+        public async Task<IEnumerable<TResult>> GetByQuery<TResult>(string queryString)
+        {
+            var requestResult = await DoGetRequest(queryString);
+
+            var result = await requestResult.Content.ReadAsAsync<ODataResponse<TResult>>();
+
+            return result.value;
+        }
+
         public IRepository<T> Filter(Expression<Func<T, bool>> expression)
         {
             queryStringBuilder.AddFilter(expression);
