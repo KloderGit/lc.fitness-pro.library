@@ -36,7 +36,7 @@ namespace lc.fitnesspro.library
 
         private async Task<IEnumerable<Person>> GetContactQuery(IEnumerable<string> array)
         {
-            var query = "?$filter=" + String.Join(" or ", array) + "&$format=json";
+            var query = "?$filter= DeletionMark eq false and (" + String.Join(" or ", array) + ")" + "&$format=json";
             var result = await GetByQuery(query);
             return result;
         }

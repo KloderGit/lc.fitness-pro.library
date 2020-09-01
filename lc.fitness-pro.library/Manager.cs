@@ -10,7 +10,7 @@ namespace lc.fitnesspro.library
         private PersonRepository personRepository;
         private StudentRepository studentRepository;
         private ContractRepository contractRepository;
-
+        private ProgramRepository programRepository;
 
         public Manager(string login, string pass)
         {
@@ -48,5 +48,13 @@ namespace lc.fitnesspro.library
             }
         }
 
+        public ProgramRepository Program
+        {
+            get
+            {
+                if (programRepository == null) { programRepository = new ProgramRepository(connection); return programRepository; }
+                else return programRepository;
+            }
+        }
     }
 }

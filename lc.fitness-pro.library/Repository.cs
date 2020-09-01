@@ -71,6 +71,8 @@ namespace lc.fitnesspro.library
             var url = uri + queryString;
             var response = await client.GetAsync(url).ConfigureAwait(false);
 
+            //var asString = await response.Content.ReadAsStringAsync();
+
             return response;
         }
     }

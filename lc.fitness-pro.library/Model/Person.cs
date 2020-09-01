@@ -1,13 +1,11 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
-
-using System.Globalization;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
+using System.Linq;
 
 namespace lc.fitnesspro.library.Model
 {
-    public partial class Person
+    public class Person
     {
         [JsonProperty("Ref_Key")]
         public Guid Key { get; set; }
@@ -67,7 +65,7 @@ namespace lc.fitnesspro.library.Model
         public List<object> ForeignLanguages { get; set; }
 
         [JsonProperty("КонтактнаяИнформация")]
-        public List<КонтактнаяИнформация> Contacts { get; set; }
+        public List<Contact> Contacts { get; set; }
 
 
         [JsonProperty("Гражданство_Key")]
@@ -86,8 +84,16 @@ namespace lc.fitnesspro.library.Model
         public Guid MarriedStatus { get; set; }
     }
 
-    public partial class КонтактнаяИнформация
+    public class Contact
     {
+        IEnumerable<Guid> phoneTypes = new List<Guid> {
+                    new Guid("07ba41ce-3e65-4d14-8d3e-046a2729af4f"),
+                    new Guid("a071e1b7-4a29-4bd2-b949-3d07ec290951"),
+                    new Guid("02a496e5-32f5-4939-a320-46b7218e4ce5")};
+
+        Guid emailType = new Guid("ea0a71c0-2218-410c-9c96-d7412c1a81ce");
+
+
         [JsonProperty("Ref_Key")]
         public Guid ParentKey { get; set; }
 
@@ -126,5 +132,16 @@ namespace lc.fitnesspro.library.Model
 
         [JsonProperty("НомерТелефонаБезКодов")]
         public string ShortPhone { get; set; }
+
+
+        public bool IsPhone()
+        {
+            return phoneTypes.Contains(KindOfKey);
+        }
+
+        public bool IsEmail()
+        {
+            return this.KindOfKey == emailType;
+        }
     }
 }
