@@ -12,5 +12,6 @@ namespace lc.fitnesspro.library.Interface
         Task<IEnumerable<T>> GetByQuery(string query);
 
         IRepository<T> Filter(Expression<Func<T, bool>> expression);
+        IRepository<T> Select(Expression<Func<T, bool>> expression);
     }
 }

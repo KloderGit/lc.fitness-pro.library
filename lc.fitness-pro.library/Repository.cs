@@ -5,13 +5,16 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using lc.fitnesspro.library.Extension;
 using lc.fitnesspro.library.Interface;
+using lc.fitnesspro.library.Misc;
 using lc.fitnesspro.library.Model;
 
 namespace lc.fitnesspro.library
 {
-    public class Repository<T> : IRepository<T>
+    public class Repository<T> : IRepository<T>, ISelect<T>
     {
         private IConnection connection;
+
+        private SelectQueryGenerator<T> selectQueryGenerator = new SelectQueryGenerator<T>();
 
         private QueryStringBuilder queryStringBuilder = new QueryStringBuilder();
 
@@ -35,6 +38,8 @@ namespace lc.fitnesspro.library
         {
             var queryString = queryStringBuilder.Build();
 
+            if(selectQueryGenerator.IsSelectAvialable) queryString += "&" + selectQueryGenerator.Build();
+
             var result = await GetByQuery(queryString);
 
             return result;
@@ -42,11 +47,9 @@ namespace lc.fitnesspro.library
 
         public async Task<IEnumerable<T>> GetByQuery(string queryString)
         {
-            var requestResult = await DoGetRequest(queryString);
+            var result = await GetByQuery<T>(queryString);
 
-            var result = await requestResult.Content.ReadAsAsync<ODataResponse<T>>();
-
-            return result.value;
+            return result;
         }
 
         public async Task<IEnumerable<TResult>> GetByQuery<TResult>(string queryString)
@@ -61,6 +64,12 @@ namespace lc.fitnesspro.library
         public IRepository<T> Filter(Expression<Func<T, bool>> expression)
         {
             queryStringBuilder.AddFilter(expression);
+            return this;
+        }
+
+        public IRepository<T> Select(Expression<Func<T,bool>> expression)
+        {
+            selectQueryGenerator.AddExpression(expression);
             return this;
         }
 
