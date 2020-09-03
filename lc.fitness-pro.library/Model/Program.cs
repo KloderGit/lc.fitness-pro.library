@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using lc.fitnesspro.library.Misc;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -25,9 +26,11 @@ namespace lc.fitnesspro.library.Model
         [JsonProperty("Цена")]
         public int Price { get; set; }
 
+        [CanExpand("Специальность")]
         [JsonProperty("Специальность_Key")]
         public Guid MajorKey { get; set; }
 
+        [CanExpand("ВидПрограммы")]
         [JsonProperty("ВидПрограммы_Key")]
         public Guid KindOfKey { get; set; }
 
@@ -43,9 +46,11 @@ namespace lc.fitnesspro.library.Model
         [JsonProperty("Сертифицируемый")]
         public bool IsSertificated { get; set; }
 
+        [CanExpand("ВыдаваемыйДокумент")]
         [JsonProperty("ВыдаваемыйДокумент_Key")]
         public Guid GraduateDocumentKey { get; set; }
 
+        [CanExpand("ФормаОбучения")]
         [JsonProperty("ФормаОбучения_Key")]
         public Guid EducationFormKey { get; set; }
 
@@ -55,15 +60,19 @@ namespace lc.fitnesspro.library.Model
         [JsonProperty("ВсегоЧасов")]
         public int TotalHours { get; set; }
 
+        [CanExpand("ПрисваиваемаяКвалификация")]
         [JsonProperty("ПрисваиваемаяКвалификация_Key")]
         public Guid QualificationKey { get; set; }
 
+        [CanExpand("ГруппаПрограммыОбучения")]
         [JsonProperty("ГруппаПрограммыОбучения_Key")]
         public Guid EducationProgramGroupKey { get; set; }
 
+        [CanExpand("НаправлениеПодготовки")]
         [JsonProperty("НаправлениеПодготовки_Key")]
         public Guid EducationDirectionKey { get; set; }
 
+        [CanExpand("ПФ_ТипМероприятия")]
         [JsonProperty("ПФ_ТипМероприятия_Key")]
         public Guid TypeKey { get; set; }
 

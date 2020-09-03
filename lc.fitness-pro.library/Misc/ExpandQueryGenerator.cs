@@ -7,10 +7,10 @@ using System.Text;
 
 namespace lc.fitnesspro.library.Misc
 {
-    public class SelectQueryGenerator
+    public class ExpandQueryGenerator
     {
         ICollection<MemberExpression> members = new List<MemberExpression>();
-        public bool IsSelectAvialable => members.Any();
+        public bool IsExpandAvialable => members.Any();
 
         public void AddExpression(Expression expression)
         {
@@ -25,8 +25,8 @@ namespace lc.fitnesspro.library.Misc
 
         public string Build()
         {
-            var result = String.Join(",", members.Select(x => GetParamTitle(x)).Where(x=>!String.IsNullOrEmpty(x)));
-            return String.IsNullOrEmpty(result) ? String.Empty : "$select=" + result;
+            var result = String.Join(",", members.Select(x => GetParamTitle(x)).Where(x => !String.IsNullOrEmpty(x)));
+            return String.IsNullOrEmpty(result) ? String.Empty : "$expand=" + result;
         }
 
         private bool IsBinaryExpression(Expression expression)
@@ -39,8 +39,8 @@ namespace lc.fitnesspro.library.Misc
         private string GetParamTitle(MemberExpression item)
         {
             var attributes = item.Member.GetCustomAttributes(false);
-            var jsonAttribute = attributes.FirstOrDefault(x=>x.GetType() == typeof(JsonPropertyAttribute)) as JsonPropertyAttribute;
-            return jsonAttribute == null ? String.Empty : jsonAttribute.PropertyName;
+            var jsonAttribute = attributes.FirstOrDefault(x => x.GetType() == typeof(CanExpandAttribute)) as CanExpandAttribute;
+            return jsonAttribute == null ? String.Empty : jsonAttribute.FieldTitle;
         }
     }
 }

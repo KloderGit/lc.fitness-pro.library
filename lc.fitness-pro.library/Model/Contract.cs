@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 using System.Globalization;
 using lc.fitnesspro.library.Interface;
+using lc.fitnesspro.library.Misc;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
@@ -32,12 +33,14 @@ namespace lc.fitnesspro.library.Model
         [JsonProperty("НомерДоговора")]
         public string RegisterTitle { get; set; }
 
+        [CanExpand("ТипДоговора")]
         [JsonProperty("ТипДоговора_Key")]
         public Guid ContactTypeKey { get; set; }
 
         [JsonProperty("СуммаДоговора")]
         public decimal Amount { get; set; }
 
+        [CanExpand("Слушатель")]
         [JsonProperty("Слушатель_Key")]
         public Guid StudentKey { get; set; }
 
@@ -47,9 +50,11 @@ namespace lc.fitnesspro.library.Model
         [JsonProperty("ДатаОкончания")]
         public DateTime FinisEducationhDate { get; set; }
 
+        [CanExpand("ПрограммаОбучения")]
         [JsonProperty("ПрограммаОбучения_Key")]
         public Guid EducationProgramKey { get; set; }
 
+        [CanExpand("Плательщик")]
         [JsonProperty("Плательщик_Key")]
         public Guid PayerKey { get; set; }
 
@@ -62,6 +67,7 @@ namespace lc.fitnesspro.library.Model
         [JsonProperty("ДатаЗакрытия")]
         public DateTime ExpiredDate { get; set; }
 
+        [CanExpand("Ответственный")]
         [JsonProperty("Ответственный_Key")]
         public Guid ResponsiblePersonKey { get; set; }
 
@@ -77,9 +83,11 @@ namespace lc.fitnesspro.library.Model
         [JsonProperty("УчитыватьПерсональнуюСкидку")]
         public bool CanIncludePersonalDiscount { get; set; }
 
+        [CanExpand("ГруппаСлушателя")]
         [JsonProperty("ГруппаСлушателя_Key")]
         public Guid GroupKey { get; set; }
 
+        [CanExpand("ПодгруппаСлушателя")]
         [JsonProperty("ПодгруппаСлушателя_Key")]
         public Guid SubGroupKey { get; set; }
 
