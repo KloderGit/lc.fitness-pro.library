@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 
 using System.Globalization;
+using lc.fitnesspro.library.Misc;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
@@ -15,19 +16,13 @@ namespace lc.fitnesspro.library.Model
         [JsonProperty("DataVersion")]
         public string DataVersion { get; set; }
 
-
-        [JsonProperty("IntTest")]
-        public int SomeInt { get; set; }
-
-        [JsonProperty("Dateee")]
-        public DateTime Dateee { get; set; }
-
         [JsonProperty("Code")]
         public string Code { get; set; }
 
         [JsonProperty("DeletionMark")]
         public bool DeletionMark { get; set; }
 
+        [CanExpand("ФизЛицо")]
         [JsonProperty("ФизЛицо_Key")]
         public Guid PersonKey{ get; set; }
 

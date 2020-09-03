@@ -10,11 +10,12 @@ using lc.fitnesspro.library.Model;
 
 namespace lc.fitnesspro.library
 {
-    public class Repository<T> : IRepository<T>, ISelect<T>
+    public class Repository<T> : IRepository<T>
     {
         private IConnection connection;
 
-        private SelectQueryGenerator<T> selectQueryGenerator = new SelectQueryGenerator<T>();
+        private SelectQueryGenerator selectQueryGenerator = new SelectQueryGenerator();
+        private ExpandQueryGenerator expandQueryGenerator = new ExpandQueryGenerator();
 
         private QueryStringBuilder queryStringBuilder = new QueryStringBuilder();
 
@@ -23,6 +24,7 @@ namespace lc.fitnesspro.library
             this.connection = connection;
         }
 
+        [Obsolete]
         public async Task<T> GetById(Guid key)
         {
             queryStringBuilder.AddKey(key);
@@ -39,6 +41,9 @@ namespace lc.fitnesspro.library
             var queryString = queryStringBuilder.Build();
 
             if(selectQueryGenerator.IsSelectAvialable) queryString += "&" + selectQueryGenerator.Build();
+
+            if (expandQueryGenerator.IsExpandAvialable) queryString += "&" + expandQueryGenerator.Build();
+
 
             var result = await GetByQuery(queryString);
 
@@ -83,6 +88,12 @@ namespace lc.fitnesspro.library
             //var asString = await response.Content.ReadAsStringAsync();
 
             return response;
+        }
+
+        public IRepository<T> Expand(Expression<Func<T, bool>> expression)
+        {
+            expandQueryGenerator.AddExpression(expression);
+            return this;
         }
     }
 }

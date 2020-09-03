@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using lc.fitnesspro.library.Misc;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -67,19 +68,23 @@ namespace lc.fitnesspro.library.Model
         [JsonProperty("КонтактнаяИнформация")]
         public List<Contact> Contacts { get; set; }
 
-
+        [CanExpand("Гражданство")]
         [JsonProperty("Гражданство_Key")]
         public Guid CitizenshipKey { get; set; }
 
+        [CanExpand("Должность")]
         [JsonProperty("Должность_Key")]
         public Guid JobPositionKey { get; set; }
 
+        [CanExpand("МестоРаботы")]
         [JsonProperty("МестоРаботы_Key")]
         public Guid CompanyKey { get; set; }
 
+        [CanExpand("Ответственный")]
         [JsonProperty("Ответственный_Key")]
         public Guid ResponsiblePersonKey { get; set; }
 
+        [CanExpand("СемейноеПоложение")]
         [JsonProperty("СемейноеПоложение_Key")]
         public Guid MarriedStatus { get; set; }
     }
