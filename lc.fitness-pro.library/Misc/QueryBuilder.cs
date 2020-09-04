@@ -38,7 +38,13 @@ namespace lc.fitnesspro.library.Misc
             return this;
         }
 
-        public IQuery<T> Expand(Expression<Func<T, object>> expression)
+        //public IQuery<T> Expand(Expression<Func<T, object>> expression)
+        //{
+        //    expandQueryGenerator.AddExpression(expression);
+        //    return this;
+        //}
+
+        public IQuery<T> Expand(Expression<Func<IContractExpandField, object>> expression)
         {
             expandQueryGenerator.AddExpression(expression);
             return this;

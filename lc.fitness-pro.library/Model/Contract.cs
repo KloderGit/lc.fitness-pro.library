@@ -10,7 +10,7 @@ using Newtonsoft.Json.Converters;
 
 namespace lc.fitnesspro.library.Model
 {
-    public class Contract : IDocument
+    public class Contract : IDocument, IContractExpandField
     {
         [JsonProperty("Ref_Key")]
         public Guid Key { get; set; }
