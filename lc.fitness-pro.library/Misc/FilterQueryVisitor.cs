@@ -57,14 +57,12 @@ namespace lc.fitnesspro.library.Misc
 
         protected override Expression VisitMember(MemberExpression node)
         {
-            if (node.NodeType == ExpressionType.MemberAccess && node.Expression.NodeType == ExpressionType.Parameter)
+            if (node.NodeType == ExpressionType.MemberAccess)
             {
-                var nodedd = node.Expression.NodeType;
-
                 var attributes = node.Member.GetCustomAttributes(false);
                 var jsonAttribute = attributes.FirstOrDefault(x => x.GetType() == typeof(JsonPropertyAttribute)) as JsonPropertyAttribute;
 
-                str += jsonAttribute.PropertyName;
+                str += jsonAttribute?.PropertyName;
 
                 return node;
             }
@@ -78,6 +76,15 @@ namespace lc.fitnesspro.library.Misc
             return p;
         }
 
+        protected override Expression VisitMethodCall(MethodCallExpression node)
+        {
+            var compiled = Expression.Lambda(node).Compile();
+            var sf = compiled.DynamicInvoke();
+
+            str += sf;
+
+            return node;
+        }
 
         protected override Expression VisitConstant(ConstantExpression node)
         {
