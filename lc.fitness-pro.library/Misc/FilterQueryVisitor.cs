@@ -12,6 +12,8 @@ namespace lc.fitnesspro.library.Misc
     {
         string str = String.Empty;
 
+        public string GetResult => str;
+
         public Expression Apply(Expression expression)
         {
             return Visit(expression);
@@ -30,24 +32,20 @@ namespace lc.fitnesspro.library.Misc
                 return node;
             }
 
-            if (node.NodeType == ExpressionType.Equal)
+            if (node.NodeType == ExpressionType.Equal || node.NodeType == ExpressionType.NotEqual || 
+                node.NodeType == ExpressionType.GreaterThanOrEqual || node.NodeType == ExpressionType.GreaterThan ||
+                node.NodeType == ExpressionType.LessThanOrEqual || node.NodeType == ExpressionType.LessThan)
             {
-                //str += "(";
-                Visit(node.Left);
-                str += " eq ";
-                Visit(node.Right);
-                //str += ")";
+                if (node.Left.NodeType == ExpressionType.MemberAccess)
+                {
+                    Visit(node.Left);
 
-                return node;
-            }
+                    str += " " + ConvertConditionToOData(node.NodeType) + " ";
 
-            if (node.NodeType == ExpressionType.NotEqual)
-            {
-                //str += "(";
-                Visit(node.Left);
-                str += " ne ";
-                Visit(node.Right);
-                //str += ")";
+                    var result = Expression.Lambda(node.Right).Compile().DynamicInvoke();
+
+                    str += GetValueString(result);
+                }
 
                 return node;
             }
@@ -57,12 +55,12 @@ namespace lc.fitnesspro.library.Misc
 
         protected override Expression VisitMember(MemberExpression node)
         {
-            if (node.NodeType == ExpressionType.MemberAccess)
+            if (node.NodeType == ExpressionType.MemberAccess && node.Expression.NodeType == ExpressionType.Parameter)
             {
                 var attributes = node.Member.GetCustomAttributes(false);
                 var jsonAttribute = attributes.FirstOrDefault(x => x.GetType() == typeof(JsonPropertyAttribute)) as JsonPropertyAttribute;
 
-                str += jsonAttribute?.PropertyName;
+                str += jsonAttribute.PropertyName;
 
                 return node;
             }
@@ -70,59 +68,53 @@ namespace lc.fitnesspro.library.Misc
             return base.VisitMember(node);
         }
 
-        protected override Expression VisitInvocation(InvocationExpression p)
+        private string GetValueString(Object item)
         {
+            string val = "";
 
-            return p;
-        }
-
-        protected override Expression VisitMethodCall(MethodCallExpression node)
-        {
-            var compiled = Expression.Lambda(node).Compile();
-            var sf = compiled.DynamicInvoke();
-
-            str += sf;
-
-            return node;
-        }
-
-        protected override Expression VisitConstant(ConstantExpression node)
-        {
-            //var compiled = Expression.Lambda(node).Compile();
-            //var sf = compiled.DynamicInvoke();
-            
-
-            if (node.Type.Name.Contains("DisplayClass0_0")) throw new ArgumentException();            // Except closures (-!!!-)
-
-            if (node.NodeType == ExpressionType.Constant)
+            switch (item)
             {
-                var value = node.Value;
-
-                if (Guid.TryParse(value.ToString(), out var guid)) 
-                {
-                    str += $"guid'{value}'";
-                    return node;
-                }
-                
-                switch (value)
-                {
-                    case string intValue:
-                        str += $"'{node.Value}'";
-                        break;
-                    case DateTime intValue:
-                        str += $"'{node.Value}'";
-                        break;
-                    default:
-                        str += node.Value.ToString();
-                        break;
-                }
-
-                return node;
+                case Guid i:
+                    val = $"guid'{i}'";
+                    break;
+                case String i:
+                    val = $"'{i}'";
+                    break;
+                case DateTime i:
+                    val = $"'{i.ToString("dd.MM.yyyy")}'";
+                    break;
+                default:
+                    val = item.ToString();
+                    break;
             }
 
-            return base.VisitConstant(node);
+            return val;
         }
 
-        public string GetResult => str;
+        private string ConvertConditionToOData(ExpressionType @enum)
+        {
+            ODataOperation result;
+            try
+            {
+                var number = (int)@enum;
+                result = (ODataOperation)number;
+            }
+            catch
+            {
+                throw new ArgumentException("Данное условие или операция не поддерживается");
+            }
+
+            return result.ToString();
+        }
+    }
+
+    public enum ODataOperation
+    {
+        eq = 13,
+        ne = 35,
+        gt = 0xF,
+        ge = 0x10,
+        lt = 20,
+        le = 21
     }
 }

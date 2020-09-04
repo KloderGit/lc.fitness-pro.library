@@ -63,14 +63,4 @@ namespace lc.fitnesspro.library.Misc
             return value;
         }
     }
-
-    public enum ODataOperation
-    {
-        eq = 13,
-        ne = 35,
-        gt = 0xF,
-        ge = 0x10,
-        lt = 20,
-        le = 21
-    }
 }
