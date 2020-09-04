@@ -14,36 +14,28 @@ namespace lc.fitnesspro.library
     {
         private IConnection connection;
 
-        private SelectQueryGenerator selectQueryGenerator = new SelectQueryGenerator();
-        private ExpandQueryGenerator expandQueryGenerator = new ExpandQueryGenerator();
-
-        private QueryStringBuilder queryStringBuilder = new QueryStringBuilder();
+        public IQuery<T> Query { get; } = new QueryBuilder<T>();
 
         public Repository(IConnection connection)
         {
             this.connection = connection;
         }
 
-        [Obsolete]
-        public async Task<T> GetById(Guid key)
-        {
-            queryStringBuilder.AddKey(key);
-            var queryString = queryStringBuilder.Build();
+        //[Obsolete]
+        //public async Task<T> GetById(Guid key)
+        //{
+        //    queryStringBuilder.AddKey(key);
+        //    var queryString = queryStringBuilder.Build();
 
-            var response = await DoGetRequest(queryString);
-            var result = await response.Content.ReadAsAsync<T>();
+        //    var response = await DoGetRequest(queryString);
+        //    var result = await response.Content.ReadAsAsync<T>();
 
-            return result;
-        }
+        //    return result;
+        //}
 
         public async Task<IEnumerable<T>> GetByFilter()
         {
-            var queryString = queryStringBuilder.Build();
-
-            if(selectQueryGenerator.IsSelectAvialable) queryString += "&" + selectQueryGenerator.Build();
-
-            if (expandQueryGenerator.IsExpandAvialable) queryString += "&" + expandQueryGenerator.Build();
-
+            var queryString = Query.Build();
 
             var result = await GetByQuery(queryString);
 
@@ -66,18 +58,6 @@ namespace lc.fitnesspro.library
             return result.value;
         }
 
-        public IRepository<T> Filter(Expression<Func<T, bool>> expression)
-        {
-            queryStringBuilder.AddFilter(expression);
-            return this;
-        }
-
-        public IRepository<T> Select(Expression<Func<T,bool>> expression)
-        {
-            selectQueryGenerator.AddExpression(expression);
-            return this;
-        }
-
         private async Task<HttpResponseMessage> DoGetRequest(string queryString)
         {
             var client = connection.GetClient();
@@ -88,12 +68,6 @@ namespace lc.fitnesspro.library
             //var asString = await response.Content.ReadAsStringAsync();
 
             return response;
-        }
-
-        public IRepository<T> Expand(Expression<Func<T, bool>> expression)
-        {
-            expandQueryGenerator.AddExpression(expression);
-            return this;
         }
     }
 }
