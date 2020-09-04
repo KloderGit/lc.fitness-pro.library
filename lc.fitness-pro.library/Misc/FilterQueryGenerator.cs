@@ -8,15 +8,12 @@ namespace lc.fitnesspro.library.Misc
 {
     public class FilterQueryGenerator
     {
-        LinkedList<Expression> expressions = new LinkedList<Expression>();
-
         ICollection<string> members = new List<string>();
+
         public bool IsFilterAvialable => members.Any();
 
         public void AddExpression(Expression expression)
         {
-            expressions.AddLast(expression);
-
             var visitor = new FilterQueryVisitor();
 
             visitor.Apply(expression);
