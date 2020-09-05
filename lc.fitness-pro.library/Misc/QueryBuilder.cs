@@ -10,45 +10,17 @@ namespace lc.fitnesspro.library.Misc
         private readonly ExpandQueryGenerator expandQueryGenerator = new ExpandQueryGenerator();
         private readonly FilterQueryGenerator filterQueryGenerator = new FilterQueryGenerator();
 
-        string queryString = "?$format=json";
+        private string queryString = "?$format=json";
 
+        public void Filter(Expression<Predicate<T>> expression) => filterQueryGenerator.AddExpression(expression);
 
+        public void And() => filterQueryGenerator.AddAnd();
 
-        public IQuery<T> Filter(Expression<Predicate<T>> expression)
-        {
-            filterQueryGenerator.AddExpression(expression);
-            return this;
-        }
+        public void Or() => filterQueryGenerator.AddOr();        
 
-        public IQuery<T> And()
-        {
-            filterQueryGenerator.AddAnd();
-            return this;
-        }
-
-        public IQuery<T> Or()
-        {
-            filterQueryGenerator.AddOr();
-            return this;
-        }
-
-        public IQuery<T> Select(Expression<Func<T, object>> expression)
-        {
-            selectQueryGenerator.AddExpression(expression);
-            return this;
-        }
-
-        //public IQuery<T> Expand(Expression<Func<T, object>> expression)
-        //{
-        //    expandQueryGenerator.AddExpression(expression);
-        //    return this;
-        //}
-
-        public IQuery<T> Expand(Expression<Func<IContractExpandField, object>> expression)
-        {
-            expandQueryGenerator.AddExpression(expression);
-            return this;
-        }
+        public void Select(Expression<Func<T, object>> expression) => selectQueryGenerator.AddExpression(expression);
+        
+        public void Expand(Expression<Func<T, object>> expression) => expandQueryGenerator.AddExpression(expression);
 
         public string Build()
         {

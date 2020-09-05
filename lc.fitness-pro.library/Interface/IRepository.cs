@@ -11,6 +11,10 @@ namespace lc.fitnesspro.library.Interface
         Task<IEnumerable<T>> GetByFilter();
         Task<IEnumerable<T>> GetByQuery(string query);
 
-        IQuery<T> Query { get; }
+        IRepository<T> Select(Expression<Func<T, object>> expression);
+        IRepository<T> Expand(Expression<Func<T, object>> expression);
+        IRepository<T> Filter(Expression<Predicate<T>> expression);
+        IRepository<T> And();
+        IRepository<T> Or();
     }
 }

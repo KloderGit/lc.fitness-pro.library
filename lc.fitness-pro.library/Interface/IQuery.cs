@@ -7,12 +7,11 @@ namespace lc.fitnesspro.library.Interface
 {
     public interface IQuery<T>
     {        
-        IQuery<T> Select(Expression<Func<T, object>> expression);
-        //IQuery<T> Expand(Expression<Func<T, object>> expression);
-        IQuery<T> Expand(Expression<Func<IContractExpandField, object>> expression);
-        IQuery<T> Filter(Expression<Predicate<T>> expression);
-        IQuery<T> And();
-        IQuery<T> Or();
+        void Select(Expression<Func<T, object>> expression);
+        void Expand(Expression<Func<T, object>> expression);
+        void Filter(Expression<Predicate<T>> expression);
+        void And();
+        void Or();
 
         string Build();
 
