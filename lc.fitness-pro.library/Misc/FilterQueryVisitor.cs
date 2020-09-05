@@ -83,6 +83,9 @@ namespace lc.fitnesspro.library.Misc
                 case DateTime i:
                     val = $"'{i.ToString("dd.MM.yyyy")}'";
                     break;
+                case bool i:
+                    val = $"{i.ToString().ToLower()}";
+                    break;
                 default:
                     val = item.ToString();
                     break;

@@ -14,7 +14,7 @@ namespace lc.fitnesspro.library
     {
         private IConnection connection;
 
-        public IQuery<T> Query { get; } = new QueryBuilder<T>();
+        IQuery<T> Query { get; } = new QueryBuilder<T>();
 
         QueryStringBuilder queryStringBuilder = new QueryStringBuilder();
 
@@ -68,9 +68,37 @@ namespace lc.fitnesspro.library
             var url = uri + queryString;
             var response = await client.GetAsync(url).ConfigureAwait(false);
 
-            //var asString = await response.Content.ReadAsStringAsync();
-
             return response;
+        }
+
+        public IRepository<T> Select(Expression<Func<T, object>> expression)
+        {
+            Query.Select(expression);
+            return this;
+        }
+
+        public IRepository<T> Expand(Expression<Func<T, object>> expression)
+        {
+            Query.Expand(expression);
+            return this;
+        }
+
+        public IRepository<T> Filter(Expression<Predicate<T>> expression)
+        {
+            Query.Filter(expression);
+            return this;
+        }
+
+        public IRepository<T> And()
+        {
+            Query.And();
+            return this;
+        }
+
+        public IRepository<T> Or()
+        {
+            Query.Or();
+            return this;
         }
     }
 }
