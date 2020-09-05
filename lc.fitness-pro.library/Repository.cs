@@ -16,22 +16,25 @@ namespace lc.fitnesspro.library
 
         public IQuery<T> Query { get; } = new QueryBuilder<T>();
 
+        QueryStringBuilder queryStringBuilder = new QueryStringBuilder();
+
+
         public Repository(IConnection connection)
         {
             this.connection = connection;
         }
 
-        //[Obsolete]
-        //public async Task<T> GetById(Guid key)
-        //{
-        //    queryStringBuilder.AddKey(key);
-        //    var queryString = queryStringBuilder.Build();
+        [Obsolete]
+        public async Task<T> GetById(Guid key)
+        {
+            queryStringBuilder.AddKey(key);
+            var queryString = queryStringBuilder.Build();
 
-        //    var response = await DoGetRequest(queryString);
-        //    var result = await response.Content.ReadAsAsync<T>();
+            var response = await DoGetRequest(queryString);
+            var result = await response.Content.ReadAsAsync<T>();
 
-        //    return result;
-        //}
+            return result;
+        }
 
         public async Task<IEnumerable<T>> GetByFilter()
         {
