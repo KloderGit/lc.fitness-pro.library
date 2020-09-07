@@ -100,5 +100,17 @@ namespace lc.fitnesspro.library
             Query.Or();
             return this;
         }
+
+        public IRepository<T> AndAlso()
+        {
+            Query.AndAlso();
+            return this;
+        }
+
+        public IRepository<T> OrAlso()
+        {
+            Query.OrAlso();
+            return this;
+        }
     }
 }

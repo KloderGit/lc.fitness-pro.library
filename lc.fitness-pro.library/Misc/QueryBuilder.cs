@@ -16,7 +16,11 @@ namespace lc.fitnesspro.library.Misc
 
         public void And() => filterQueryGenerator.AddAnd();
 
-        public void Or() => filterQueryGenerator.AddOr();        
+        public void Or() => filterQueryGenerator.AddOr();
+
+        public void AndAlso() => filterQueryGenerator.AndAlso();
+
+        public void OrAlso() => filterQueryGenerator.OrAlso();
 
         public void Select(Expression<Func<T, object>> expression) => selectQueryGenerator.AddExpression(expression);
         

@@ -23,11 +23,11 @@ namespace lc.fitnesspro.library.Misc
         {
             if (node.NodeType == ExpressionType.AndAlso || node.NodeType == ExpressionType.OrElse)
             {
-                str += "(";
+                //str += "(";
                 Visit(node.Left);
                 str += node.NodeType == ExpressionType.AndAlso ? " and " : " or ";
                 Visit(node.Right);
-                str += ")";
+                //str += ")";
 
                 return node;
             }

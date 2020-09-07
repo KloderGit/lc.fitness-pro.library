@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using lc.fitnesspro.library;
 using lc.fitnesspro.library.Interface;
+using lc.fitnesspro.library.Model;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 
@@ -10,6 +11,28 @@ namespace lc.library.test
     [TestClass]
     public class PersonRepositoryIntegativeTest
     {
+        [TestMethod]
+        public void GenerateQuery()
+        {
+            var conn = new Connection(new Account("Kloder", "Kaligula2"));
+            var pero = new Repository<Contract>(conn);
+
+            var sdr = pero.Filter(x=>x.DeletionMark == false).And()
+                .Filter(x=>x.Comment == "asdf").Or()
+                .Filter(x=>x.DeletionMark == true || x.ExpiredDate == DateTime.Now).OrAlso();
+
+            for (var i = 1; i <= 5; i++)
+            {
+                sdr.Filter(x => x.Discount == i);
+                if (i != 5) sdr.Or();
+            }
+
+            sdr.GetByFilter();
+
+        }
+
+
+
         [TestMethod]
         public void GetByPhone()
         {

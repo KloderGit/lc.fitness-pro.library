@@ -14,6 +14,7 @@ namespace lc.fitnesspro.library.Interface
         void Or();
 
         string Build();
-
+        void AndAlso();
+        void OrAlso();
     }
 }

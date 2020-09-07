@@ -16,5 +16,7 @@ namespace lc.fitnesspro.library.Interface
         IRepository<T> Filter(Expression<Predicate<T>> expression);
         IRepository<T> And();
         IRepository<T> Or();
+        IRepository<T> AndAlso();
+        IRepository<T> OrAlso();
     }
 }
