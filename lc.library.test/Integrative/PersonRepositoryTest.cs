@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using lc.fitnesspro.library;
 using lc.fitnesspro.library.Interface;
 using lc.fitnesspro.library.Model;
@@ -17,17 +18,11 @@ namespace lc.library.test
             var conn = new Connection(new Account("Kloder", "Kaligula2"));
             var pero = new Repository<Contract>(conn);
 
-            var sdr = pero.Filter(x=>x.DeletionMark == false).And()
-                .Filter(x=>x.Comment == "asdf").Or()
-                .Filter(x=>x.DeletionMark == true || x.ExpiredDate == DateTime.Now).OrAlso();
+            var gd = new Guid("ec4bf44a-e06b-11ea-812d-0cc47a4b75cc");
 
-            for (var i = 1; i <= 5; i++)
-            {
-                sdr.Filter(x => x.Discount == i);
-                if (i != 5) sdr.Or();
-            }
+            var sdr = pero.Filter(x => x.Registry.Any(y => y.StudentKey == gd));
 
-            sdr.GetByFilter();
+            var tert = sdr.GetByFilter().Result;
 
         }
 

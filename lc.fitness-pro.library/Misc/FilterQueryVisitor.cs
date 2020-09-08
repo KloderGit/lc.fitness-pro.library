@@ -23,11 +23,9 @@ namespace lc.fitnesspro.library.Misc
         {
             if (node.NodeType == ExpressionType.AndAlso || node.NodeType == ExpressionType.OrElse)
             {
-                //str += "(";
                 Visit(node.Left);
                 str += node.NodeType == ExpressionType.AndAlso ? " and " : " or ";
                 Visit(node.Right);
-                //str += ")";
 
                 return node;
             }
@@ -52,6 +50,22 @@ namespace lc.fitnesspro.library.Misc
 
             return base.VisitBinary(node);
         }
+
+
+        protected override Expression VisitMethodCall(MethodCallExpression node)
+        {
+            if (node.Method.Name == "Any")
+            {
+                Visit(node.Arguments.First());
+                str += "/";
+                Visit(node.Arguments[1]);
+
+                return  node;
+            }
+
+            return base.VisitMethodCall(node);
+        }
+
 
         protected override Expression VisitMember(MemberExpression node)
         {
