@@ -9,8 +9,6 @@
     <RepositoryType>library</RepositoryType>
     <Version>1.2.1.00</Version>
     <AssemblyVersion>1.2.1.00</AssemblyVersion>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <PackageId>lc.fitness-pro.library</PackageId>
   </PropertyGroup>
 
   <ItemGroup>
