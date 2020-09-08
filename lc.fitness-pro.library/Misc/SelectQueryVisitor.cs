@@ -18,7 +18,15 @@ namespace lc.fitnesspro.library.Misc
 
         protected override Expression VisitMember(MemberExpression node)
         {
-            var title = GetParamTitle(node);
+            string title = string.Empty;
+
+            if (node.Expression.NodeType == ExpressionType.MemberAccess)
+            {
+                title = GetParamTitle((MemberExpression)node.Expression);
+                title += "/";
+            }
+
+            title += GetParamTitle(node);
             fieldsName.Add(title);
 
             return node;

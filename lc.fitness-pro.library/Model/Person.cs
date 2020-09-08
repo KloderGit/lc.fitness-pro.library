@@ -68,25 +68,37 @@ namespace lc.fitnesspro.library.Model
         [JsonProperty("КонтактнаяИнформация")]
         public List<Contact> Contacts { get; set; }
 
+
         [CanExpand("Гражданство")]
         [JsonProperty("Гражданство_Key")]
         public Guid CitizenshipKey { get; set; }
+
+        [JsonProperty("Гражданство")]
+        public Citizenship Citizenship { get; set; }        
+
 
         [CanExpand("Должность")]
         [JsonProperty("Должность_Key")]
         public Guid JobPositionKey { get; set; }
 
+        [JsonProperty("Должность")]
+        public JobPosition JobPosition { get; set; }
+
+
         [CanExpand("МестоРаботы")]
         [JsonProperty("МестоРаботы_Key")]
         public Guid CompanyKey { get; set; }
+
+        [JsonProperty("МестоРаботы")]
+        public Company Company { get; set; }
+
 
         [CanExpand("Ответственный")]
         [JsonProperty("Ответственный_Key")]
         public Guid ResponsiblePersonKey { get; set; }
 
-        [CanExpand("СемейноеПоложение")]
-        [JsonProperty("СемейноеПоложение_Key")]
-        public Guid MarriedStatus { get; set; }
+        [JsonProperty("Ответственный")]
+        public ResponsibleUser ResponsibleUser { get; set; }        
     }
 
     public class Contact
@@ -149,4 +161,107 @@ namespace lc.fitnesspro.library.Model
             return this.KindOfKey == emailType;
         }
     }
+
+    public class Citizenship
+    {
+        [JsonProperty("Ref_Key")]
+        public Guid Key { get; set; }
+
+        [JsonProperty("DataVersion")]
+        public string DataVersion { get; set; }
+
+        [JsonProperty("DeletionMark")]
+        public bool IsDelete { get; set; }
+
+        [JsonProperty("Predefined")]
+        public bool Predefined { get; set; }
+
+        [JsonProperty("Code")]
+        public string Code { get; set; }
+
+        [JsonProperty("Description")]
+        public string Description { get; set; }
+
+        [JsonProperty("НаименованиеПолное")]
+        public string Title { get; set; }
+
+        [JsonProperty("КодАльфа2")]
+        public string RegionCode1 { get; set; }
+
+        [JsonProperty("КодАльфа3")]
+        public string RegionCode2 { get; set; }
+    }
+
+    public class JobPosition
+    {
+        [JsonProperty("Ref_Key")]
+        public Guid Key { get; set; }
+
+        [JsonProperty("DataVersion")]
+        public string DataVersion { get; set; }
+
+        [JsonProperty("DeletionMark")]
+        public bool IsDelete { get; set; }
+
+        [JsonProperty("Predefined")]
+        public bool Predefined { get; set; }
+
+        [JsonProperty("Code")]
+        public string Code { get; set; }
+
+        [JsonProperty("Description")]
+        public string Description { get; set; }
+    }
+
+    public class Company
+    {
+        [JsonProperty("Ref_Key")]
+        public Guid Key { get; set; }
+
+        [JsonProperty("DataVersion")]
+        public string DataVersion { get; set; }
+
+        [JsonProperty("DeletionMark")]
+        public bool IsDelete { get; set; }
+
+        [JsonProperty("Predefined")]
+        public bool Predefined { get; set; }
+
+        [JsonProperty("Code")]
+        public string Code { get; set; }
+
+        [JsonProperty("Description")]
+        public string Description { get; set; }
+
+        [JsonProperty("НаименованиеПолное")]
+        public string Title { get; set; }
+
+        [JsonProperty("ИНН")]
+        public string INN { get; set; }
+    }
+
+    public class ResponsibleUser
+    {
+        [JsonProperty("Ref_Key")]
+        public Guid Key { get; set; }
+
+        [JsonProperty("DataVersion")]
+        public string DataVersion { get; set; }
+
+        [JsonProperty("DeletionMark")]
+        public bool IsDelete { get; set; }
+
+        [JsonProperty("Predefined")]
+        public bool Predefined { get; set; }
+
+        [JsonProperty("Description")]
+        public string Description { get; set; }
+
+        [JsonProperty("ФизЛицо_Key")]
+        public Guid PersonKey { get; set; }
+
+        [JsonProperty("Сотрудник_Key")]
+        public Guid EmployeeKey { get; set; }
+    }
+
 }

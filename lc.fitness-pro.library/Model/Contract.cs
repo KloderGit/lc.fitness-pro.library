@@ -10,7 +10,7 @@ using Newtonsoft.Json.Converters;
 
 namespace lc.fitnesspro.library.Model
 {
-    public class Contract : IDocument, IContractExpandField
+    public class Contract : IDocument
     {
         [JsonProperty("Ref_Key")]
         public Guid Key { get; set; }
@@ -37,12 +37,15 @@ namespace lc.fitnesspro.library.Model
         [JsonProperty("ТипДоговора_Key")]
         public Guid ContactTypeKey { get; set; }
 
+        [JsonProperty("ТипДоговора")]
+        public ContractType ContractType { get; set; }        
+
         [JsonProperty("СуммаДоговора")]
         public decimal Amount { get; set; }
 
-        [CanExpand("Слушатель")]
-        [JsonProperty("Слушатель_Key")]
-        public Guid StudentKey { get; set; }
+        //[CanExpand("Слушатель")]
+        //[JsonProperty("Слушатель_Key")]
+        //public Guid StudentKey { get; set; }
 
         [JsonProperty("ДатаНачала")]
         public DateTime StartEducationDate { get; set; }
@@ -54,9 +57,15 @@ namespace lc.fitnesspro.library.Model
         [JsonProperty("ПрограммаОбучения_Key")]
         public Guid EducationProgramKey { get; set; }
 
+        [JsonProperty("ПрограммаОбучения")]
+        public Program EducationProgram { get; set; }
+
         [CanExpand("Плательщик")]
         [JsonProperty("Плательщик_Key")]
         public Guid PayerKey { get; set; }
+
+        [JsonProperty("Плательщик")]
+        public Payer Payer { get; set; }  
 
         [JsonProperty("ГрупповойДоговор")]
         public bool IsGroupContract { get; set; }
@@ -70,6 +79,9 @@ namespace lc.fitnesspro.library.Model
         [CanExpand("Ответственный")]
         [JsonProperty("Ответственный_Key")]
         public Guid ResponsiblePersonKey { get; set; }
+
+        [JsonProperty("Ответственный")]
+        public ResponsibleUser ResponsibleUser { get; set; }
 
         [JsonProperty("Комментарий")]
         public string Comment { get; set; }
@@ -87,9 +99,17 @@ namespace lc.fitnesspro.library.Model
         [JsonProperty("ГруппаСлушателя_Key")]
         public Guid GroupKey { get; set; }
 
+        [JsonProperty("ГруппаСлушателя")]
+        public Group Group { get; set; }
+        
+
         [CanExpand("ПодгруппаСлушателя")]
         [JsonProperty("ПодгруппаСлушателя_Key")]
         public Guid SubGroupKey { get; set; }
+
+        [JsonProperty("ПодгруппаСлушателя")]
+        public SubGroup SubGroup { get; set; }
+
 
         [JsonProperty("Слушатели")]
         public ICollection<RegisterStudent> Registry { get; private set; } = new List<RegisterStudent>();
@@ -132,5 +152,112 @@ namespace lc.fitnesspro.library.Model
 
         [JsonProperty("Слушатель_Key")]
         public Guid StudentKey { get; set; }
+    }
+
+
+    public class ContractType
+    {
+        [JsonProperty("Ref_Key")]
+        public Guid Key { get; set; }
+
+        [JsonProperty("DataVersion")]
+        public string DataVersion { get; set; }
+
+        [JsonProperty("DeletionMark")]
+        public bool IsDelete { get; set; }
+
+        [JsonProperty("Predefined")]
+        public bool Predefined { get; set; }
+
+        [JsonProperty("Code")]
+        public string Code { get; set; }
+
+        [JsonProperty("Description")]
+        public string Description { get; set; }
+
+        [JsonProperty("ЮрФизЛицо")]
+        public string PersonOrCompany { get; set; }
+    }
+
+    public class Payer
+    {
+        [JsonProperty("Ref_Key")]
+        public Guid Key { get; set; }
+
+        [JsonProperty("DataVersion")]
+        public string DataVersion { get; set; }
+
+        [JsonProperty("DeletionMark")]
+        public bool IsDelete { get; set; }
+
+        [JsonProperty("Predefined")]
+        public bool Predefined { get; set; }
+
+        [JsonProperty("Code")]
+        public string Code { get; set; }
+
+        [JsonProperty("Description")]
+        public string Description { get; set; }
+
+        [JsonProperty("ЮрФизЛицо")]
+        public string PersonOrCompany { get; set; }
+
+        [JsonProperty("НаименованиеПолное")]
+        public string Title { get; set; }
+    }
+
+    public class Group
+    {
+        [JsonProperty("Ref_Key")]
+        public Guid Key { get; set; }
+
+        [JsonProperty("DataVersion")]
+        public string DataVersion { get; set; }
+
+        [JsonProperty("DeletionMark")]
+        public bool IsDelete { get; set; }
+
+        [JsonProperty("Predefined")]
+        public bool Predefined { get; set; }
+
+        [JsonProperty("Code")]
+        public string Code { get; set; }
+
+        [JsonProperty("Description")]
+        public string Description { get; set; }
+
+        [JsonProperty("ПрограммаОбучения_Key")]
+        public Guid ProgramKey { get; set; }
+
+
+        [JsonProperty("ДатаНачалаОбучения")]
+        public DateTime StartDate { get; set; }
+
+        [JsonProperty("ДатаокончанияОбучения")]
+        public DateTime FinishDate { get; set; }
+    }
+
+    public class SubGroup
+    {
+        [JsonProperty("Ref_Key")]
+        public Guid Key { get; set; }
+
+        [JsonProperty("DataVersion")]
+        public string DataVersion { get; set; }
+
+        [JsonProperty("DeletionMark")]
+        public bool IsDelete { get; set; }
+
+        [JsonProperty("Predefined")]
+        public bool Predefined { get; set; }
+
+        [JsonProperty("Code")]
+        public string Code { get; set; }
+
+        [JsonProperty("Description")]
+        public string Description { get; set; }
+
+        [JsonProperty("Owner_Key")]
+        public Guid GroupKey { get; set; }
     }
 }

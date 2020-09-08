@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-
-using System.Globalization;
-using lc.fitnesspro.library.Misc;
+﻿using lc.fitnesspro.library.Misc;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
+using System;
 
 namespace lc.fitnesspro.library.Model
 {
@@ -25,6 +21,9 @@ namespace lc.fitnesspro.library.Model
         [CanExpand("ФизЛицо")]
         [JsonProperty("ФизЛицо_Key")]
         public Guid PersonKey{ get; set; }
+
+        [JsonProperty("ФизЛицо")]
+        public Person Person { get; set; }
 
         [JsonProperty("Description")]
         public string Description { get; set; }
