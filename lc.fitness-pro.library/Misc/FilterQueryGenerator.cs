@@ -53,9 +53,9 @@ namespace lc.fitnesspro.library.Misc
 
         public string Build()
         {
-            var result = "$filter=" + RecursiveBuild(tree);
+            var stringResult = RecursiveBuild(tree);
 
-            return result;
+            return String.IsNullOrEmpty(stringResult) == false ? "$filter=" + stringResult: String.Empty;
         }
 
 

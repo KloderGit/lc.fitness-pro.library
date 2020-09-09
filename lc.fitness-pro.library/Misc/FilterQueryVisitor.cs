@@ -1,10 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Reflection;
-using System.Text;
 
 namespace lc.fitnesspro.library.Misc
 {
@@ -30,7 +27,7 @@ namespace lc.fitnesspro.library.Misc
                 return node;
             }
 
-            if (node.NodeType == ExpressionType.Equal || node.NodeType == ExpressionType.NotEqual || 
+            if (node.NodeType == ExpressionType.Equal || node.NodeType == ExpressionType.NotEqual ||
                 node.NodeType == ExpressionType.GreaterThanOrEqual || node.NodeType == ExpressionType.GreaterThan ||
                 node.NodeType == ExpressionType.LessThanOrEqual || node.NodeType == ExpressionType.LessThan)
             {
@@ -56,12 +53,49 @@ namespace lc.fitnesspro.library.Misc
         {
             if (node.Method.Name == "Any")
             {
-                Visit(node.Arguments.First());
-                str += "/";
-                Visit(node.Arguments[1]);
+                if (node.Arguments.Count < 2) throw new ArgumentException("Метод Any() без аргументов не поддерживается");
 
-                return  node;
+                var nd = (LambdaExpression)node.Arguments[1];
+
+                if (nd.Body.NodeType == ExpressionType.MemberAccess) throw new ArgumentException("Проверка только по имени поля не поддерживается");
+
+                if (nd.Body.NodeType == ExpressionType.Call)
+                {
+                    var bd = nd.Body as MethodCallExpression;
+
+                    if (bd.Method.Name == "EndsWith")
+                    {
+                        str += "endswith(";
+                        Visit(node.Arguments.First());
+                        str += "/";
+                        Visit(node.Arguments[1]);
+                        str += ",";
+
+                        var result = Expression.Lambda(bd.Arguments[0]).Compile().DynamicInvoke();
+                        str += GetValueString(result);
+
+                        str += ")";
+                    }
+                    else
+                    {
+                        throw new ArgumentException("Проверка по произвольному методу не поддерживается");
+                    }
+                }
+                else if (nd.Body is BinaryExpression)
+                {
+                    throw new ArgumentException("Проверка по составному условию не поддерживается");
+                }
+                else
+                {
+                    Visit(node.Arguments.First());
+                    str += "/";
+                    Visit(node.Arguments[1]);
+                }
+
+                return node;
             }
+
+
 
             return base.VisitMethodCall(node);
         }
