@@ -81,10 +81,10 @@ namespace lc.fitnesspro.library.Misc
                         throw new ArgumentException("Проверка по произвольному методу не поддерживается");
                     }
                 }
-                else if (nd.Body is BinaryExpression)
-                {
-                    throw new ArgumentException("Проверка по составному условию не поддерживается");
-                }
+                //else if (nd.Body is BinaryExpression)
+                //{
+                //    throw new ArgumentException("Проверка по составному условию не поддерживается");
+                //}
                 else
                 {
                     Visit(node.Arguments.First());
