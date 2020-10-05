@@ -12,7 +12,7 @@ namespace lc.fitnesspro.library
 {
     public class Repository<T> : IRepository<T>
     {
-        private IConnection connection;
+        protected IConnection connection;
 
         IQuery<T> Query { get; } = new QueryBuilder<T>();
 
@@ -36,7 +36,7 @@ namespace lc.fitnesspro.library
             return result;
         }
 
-        public async Task<IEnumerable<T>> GetByFilter()
+        public virtual async Task<IEnumerable<T>> GetByFilter()
         {
             var queryString = Query.Build();
 

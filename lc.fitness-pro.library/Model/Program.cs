@@ -77,7 +77,7 @@ namespace lc.fitnesspro.library.Model
         public Guid TypeKey { get; set; }
 
         [JsonProperty("Дисциплины")]
-        public IEnumerable<Discipline> Disciplines { get; set; }
+        public IEnumerable<DisciplineInfo> Disciplines { get; set; }
 
         [JsonProperty("Преподаватели")]
         public IEnumerable<Teacher> Teachers { get; set; }
@@ -98,13 +98,15 @@ namespace lc.fitnesspro.library.Model
         public Guid IssuedDocumentKey { get; set; }
     }
 
-    public class Discipline
+    public class DisciplineInfo
     {
         [JsonProperty("LineNumber")]
         public int LineNumber { get; set; }
 
         [JsonProperty("Дисциплина_Key")]
         public Guid DisciplineKey { get; set; }
+
+        public Discipline Discipline { get; set; }
 
         [JsonProperty("Часы")]
         public int Hours { get; set; }
