@@ -9,7 +9,7 @@ using lc.fitnesspro.library.Model;
 
 namespace lc.fitnesspro.library
 {
-    public class ControlRepository : Repository<Rate>
+    public class ControlRepository : Repository<Control>
     {
         public ControlRepository(IConnection connection)
             : base(connection)
