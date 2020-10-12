@@ -39,7 +39,7 @@ namespace lc.fitnesspro.library
             //dictionary.Add(typeof(Counterpart), "1CDB_FPA_DPO/odata/standard.odata/Catalog_Контрагенты");
             dictionary.Add(typeof(Discipline), "1CDB_FPA_DPO/odata/standard.odata/Catalog_Дисциплины");
             dictionary.Add(typeof(Rate), "1CDB_FPA_DPO/odata/standard.odata/Catalog_Оценки");
-            dictionary.Add(typeof(Rate), "1CDB_FPA_DPO/odata/standard.odata/Catalog_ФормыКонтроляДПО");
+            dictionary.Add(typeof(Control), "1CDB_FPA_DPO/odata/standard.odata/Catalog_ФормыКонтроляДПО");
 
 
             //dictionary.Add(typeof(PayDocument), "1CDB_FPA_DPO/odata/standard.odata/Document_РегистрацияОплатИВозвратов");
