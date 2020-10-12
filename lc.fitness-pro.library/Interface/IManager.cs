@@ -8,5 +8,6 @@ namespace lc.fitnesspro.library.Interface
         ContractRepository Contract { get; }
         ProgramRepository Program { get; }
         DisciplineRepository Discipline { get; }
+        RateRepository Rate { get; }
     }
 }
