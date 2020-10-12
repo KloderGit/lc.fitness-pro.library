@@ -13,6 +13,7 @@ namespace lc.fitnesspro.library
         private ProgramRepository programRepository;
         private DisciplineRepository disciplineRepository;
         private RateRepository rateRepository;
+        private ControlRepository controlRepository;
 
         public Manager(string login, string pass)
         {
@@ -74,6 +75,15 @@ namespace lc.fitnesspro.library
             {
                 if (rateRepository == null) { rateRepository = new RateRepository(connection); return rateRepository; }
                 else return rateRepository;
+            }
+        }
+
+        public ControlRepository Control
+        {
+            get
+            {
+                if (controlRepository == null) { controlRepository = new ControlRepository(connection); return controlRepository; }
+                else return controlRepository;
             }
         }
 
