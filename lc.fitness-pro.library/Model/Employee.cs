@@ -7,7 +7,7 @@ namespace lc.fitnesspro.library.Model
     public class Employee
     {
         [JsonProperty("Ref_Key")]
-        public string Key { get; set; }
+        public Guid Key { get; set; }
         [JsonProperty("DataVersion")]
         public string DataVersion { get; set; }
         [JsonProperty("DeletionMark")]
