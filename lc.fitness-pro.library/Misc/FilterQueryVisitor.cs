@@ -37,6 +37,8 @@ namespace lc.fitnesspro.library.Misc
 
                     str += " " + ConvertConditionToOData(node.NodeType) + " ";
 
+                    Visit(node.Right);
+
                     var result = Expression.Lambda(node.Right).Compile().DynamicInvoke();
 
                     str += GetValueString(result);
@@ -103,13 +105,19 @@ namespace lc.fitnesspro.library.Misc
 
         protected override Expression VisitMember(MemberExpression node)
         {
-            if (node.NodeType == ExpressionType.MemberAccess && node.Expression.NodeType == ExpressionType.Parameter)
+            if (node.NodeType == ExpressionType.MemberAccess)
             {
-                var attributes = node.Member.GetCustomAttributes(false);
-                var jsonAttribute = attributes.FirstOrDefault(x => x.GetType() == typeof(JsonPropertyAttribute)) as JsonPropertyAttribute;
+                if(node.Expression.NodeType == ExpressionType.Parameter)
+                {
+                    var attributes = node.Member.GetCustomAttributes(false);
+                    var jsonAttribute = attributes.FirstOrDefault(x => x.GetType() == typeof(JsonPropertyAttribute)) as JsonPropertyAttribute;
 
-                str += jsonAttribute.PropertyName;
+                    str += jsonAttribute.PropertyName;
 
+                    return node;
+                }
+
+                //str += "AAAAA";
                 return node;
             }
 

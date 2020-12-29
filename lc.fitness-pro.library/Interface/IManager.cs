@@ -11,5 +11,6 @@ namespace lc.fitnesspro.library.Interface
         RateRepository Rate { get; }
         ControlRepository Control { get; }
         EmployeeRepository Employee { get; }
+        AssignDisciplineRepository AssignDiscipline { get; }
     }
 }
