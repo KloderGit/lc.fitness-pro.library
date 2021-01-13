@@ -26,13 +26,14 @@ namespace lc.fitnesspro.library.Model
         [JsonProperty("Цена")]
         public int Price { get; set; }
 
-        [CanExpand("Специальность")]
         [JsonProperty("Специальность_Key")]
         public Guid MajorKey { get; set; }
 
-        [CanExpand("ВидПрограммы")]
         [JsonProperty("ВидПрограммы_Key")]
-        public Guid KindOfKey { get; set; }
+        public Guid KindOfProgramKey { get; set; }
+        [CanExpand("ВидПрограммы")]
+        [JsonProperty("ВидПрограммы")]
+        public ExpandedEntity KindOfProgram { get; set; }
 
         [JsonProperty("Code")]
         public string Code { get; set; }
@@ -46,13 +47,14 @@ namespace lc.fitnesspro.library.Model
         [JsonProperty("Сертифицируемый")]
         public bool IsSertificated { get; set; }
 
-        [CanExpand("ВыдаваемыйДокумент")]
         [JsonProperty("ВыдаваемыйДокумент_Key")]
         public Guid GraduateDocumentKey { get; set; }
 
-        [CanExpand("ФормаОбучения")]
         [JsonProperty("ФормаОбучения_Key")]
         public Guid EducationFormKey { get; set; }
+        [CanExpand("ФормаОбучения")]
+        [JsonProperty("ФормаОбучения")]
+        public ExpandedEntity EducationForm { get; set; }
 
         [JsonProperty("ДатаУтверждения")]
         public DateTime SignAt { get; set; }
@@ -60,21 +62,29 @@ namespace lc.fitnesspro.library.Model
         [JsonProperty("ВсегоЧасов")]
         public int TotalHours { get; set; }
 
-        [CanExpand("ПрисваиваемаяКвалификация")]
         [JsonProperty("ПрисваиваемаяКвалификация_Key")]
         public Guid QualificationKey { get; set; }
+        [CanExpand("ПрисваиваемаяКвалификация")]
+        [JsonProperty("ПрисваиваемаяКвалификация")]
+        public ExpandedEntity Qualification { get; set; }
 
-        [CanExpand("ГруппаПрограммыОбучения")]
         [JsonProperty("ГруппаПрограммыОбучения_Key")]
         public Guid EducationProgramGroupKey { get; set; }
+        [CanExpand("ГруппаПрограммыОбучения")]
+        [JsonProperty("ГруппаПрограммыОбучения")]
+        public ExpandedEntity EducationProgramGroup { get; set; }
 
-        [CanExpand("НаправлениеПодготовки")]
         [JsonProperty("НаправлениеПодготовки_Key")]
         public Guid EducationDirectionKey { get; set; }
+        [CanExpand("НаправлениеПодготовки")]
+        [JsonProperty("НаправлениеПодготовки")]
+        public ExpandedEntity EducationDirection { get; set; }
 
-        [CanExpand("ПФ_ТипМероприятия")]
         [JsonProperty("ПФ_ТипМероприятия_Key")]
         public Guid TypeKey { get; set; }
+        [CanExpand("ПФ_ТипМероприятия")]
+        [JsonProperty("ПФ_ТипМероприятия")]
+        public ExpandedEntity Type { get; set; }
 
         [JsonProperty("Дисциплины")]
         public IEnumerable<DisciplineInfo> Disciplines { get; set; }
@@ -88,6 +98,7 @@ namespace lc.fitnesspro.library.Model
         [JsonProperty("ВыдаваемыеДокументы")]
         public IEnumerable<IssuedDocument> IssuedDocuments { get; set; }
     }
+
 
     public class IssuedDocument
     {

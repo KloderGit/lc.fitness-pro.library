@@ -18,10 +18,9 @@ namespace lc.fitnesspro.library.Model
         [JsonProperty("DeletionMark")]
         public bool DeletionMark { get; set; }
 
-        [CanExpand("ФизЛицо")]
         [JsonProperty("ФизЛицо_Key")]
         public Guid PersonKey{ get; set; }
-
+        [CanExpand("ФизЛицо")]
         [JsonProperty("ФизЛицо")]
         public Person Person { get; set; }
 

@@ -22,9 +22,10 @@ namespace lc.fitnesspro.library.Model
         [CanExpand("ТекущаяДолжность")]
         [JsonProperty("ТекущаяДолжность_Key")] 
         public Guid JobPositionKey { get; set; }
-
-        [CanExpand("ФизЛицо")]
         [JsonProperty("ФизЛицо_Key")] 
         public Guid PersonKey { get; set; }
+        [CanExpand("ФизЛицо")]
+        [JsonProperty("ФизЛицо")] 
+        public Person Person { get; set; }
     }
 }

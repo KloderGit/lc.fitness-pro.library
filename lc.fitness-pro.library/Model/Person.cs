@@ -69,34 +69,29 @@ namespace lc.fitnesspro.library.Model
         public List<Contact> Contacts { get; set; }
 
 
-        [CanExpand("Гражданство")]
         [JsonProperty("Гражданство_Key")]
         public Guid CitizenshipKey { get; set; }
-
+        [CanExpand("Гражданство")]
         [JsonProperty("Гражданство")]
-        public Citizenship Citizenship { get; set; }        
+        public Citizenship Citizenship { get; set; }
 
-
-        [CanExpand("Должность")]
         [JsonProperty("Должность_Key")]
         public Guid JobPositionKey { get; set; }
-
+        [CanExpand("Должность")]
         [JsonProperty("Должность")]
         public JobPosition JobPosition { get; set; }
 
 
-        [CanExpand("МестоРаботы")]
         [JsonProperty("МестоРаботы_Key")]
         public Guid CompanyKey { get; set; }
-
+        [CanExpand("МестоРаботы")]
         [JsonProperty("МестоРаботы")]
         public Company Company { get; set; }
 
 
-        [CanExpand("Ответственный")]
         [JsonProperty("Ответственный_Key")]
         public Guid ResponsiblePersonKey { get; set; }
-
+        [CanExpand("Ответственный")]
         [JsonProperty("Ответственный")]
         public ResponsibleUser ResponsibleUser { get; set; }        
     }
