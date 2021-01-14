@@ -1,7 +1,5 @@
 ﻿namespace lc.fitnesspro.library.Model
 {
-    public class EducationForm
-    {
-        
-    }
+    public class EducationForm : BasicEntity
+    {}
 }

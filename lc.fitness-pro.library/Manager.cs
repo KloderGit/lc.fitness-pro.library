@@ -1,5 +1,6 @@
 ﻿using System;
 using lc.fitnesspro.library.Interface;
+using lc.fitnesspro.library.Model;
 
 namespace lc.fitnesspro.library
 {
@@ -16,6 +17,13 @@ namespace lc.fitnesspro.library
         private ControlRepository controlRepository;
         private EmployeeRepository employeeRepository;
         private AssignDisciplineRepository assignDisciplineRepository;
+        
+        private Repository<EducationType> educationTypeRepository;
+        private Repository<EducationForm> educationFormRepository;
+        private Repository<Qualification> qualificationRepository;
+        private Repository<EducationDirection> educationDirectionRepository;
+        private Repository<EducationVariant> educationVariantRepository;
+        private Repository<EducationGroup> educationGroupRepository;
 
         public Manager(string login, string pass)
         {
@@ -107,5 +115,58 @@ namespace lc.fitnesspro.library
             }
         }
 
+        public Repository<EducationType> EducationType
+        {
+            get
+            {
+                if (educationTypeRepository == null) { educationTypeRepository = new Repository<EducationType>(connection); return educationTypeRepository; }
+                else return educationTypeRepository;
+            }
+        }
+        
+        public Repository<EducationForm> EducationForm
+        {
+            get
+            {
+                if (educationFormRepository == null) { educationFormRepository = new Repository<EducationForm>(connection); return educationFormRepository; }
+                else return educationFormRepository;
+            }
+        }
+        
+        public Repository<Qualification> Qualification
+        {
+            get
+            {
+                if (qualificationRepository == null) { qualificationRepository = new Repository<Qualification>(connection); return qualificationRepository; }
+                else return qualificationRepository;
+            }
+        }
+        
+        public Repository<EducationDirection> EducationDirection
+        {
+            get
+            {
+                if (educationDirectionRepository == null) { educationDirectionRepository = new Repository<EducationDirection>(connection); return educationDirectionRepository; }
+                else return educationDirectionRepository;
+            }
+        }
+        
+        public Repository<EducationVariant> EducationVariant
+        {
+            get
+            {
+                if (educationVariantRepository == null) { educationVariantRepository = new Repository<EducationVariant>(connection); return educationVariantRepository; }
+                else return educationVariantRepository;
+            }
+        }
+        
+        public Repository<EducationGroup> EducationGroup
+        {
+            get
+            {
+                if (educationGroupRepository == null) { educationGroupRepository = new Repository<EducationGroup>(connection); return educationGroupRepository; }
+                else return educationGroupRepository;
+            }
+        }
     }
 }

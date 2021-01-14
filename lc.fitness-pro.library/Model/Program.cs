@@ -26,14 +26,12 @@ namespace lc.fitnesspro.library.Model
         [JsonProperty("Цена")]
         public int Price { get; set; }
 
-        [JsonProperty("Специальность_Key")]
-        public Guid MajorKey { get; set; }
-
+        // Тип мероприятия - Стажировка\Практика\Обучение
         [JsonProperty("ВидПрограммы_Key")]
         public Guid KindOfProgramKey { get; set; }
         [CanExpand("ВидПрограммы")]
         [JsonProperty("ВидПрограммы")]
-        public ExpandedEntity KindOfProgram { get; set; }
+        public EducationType KindOfProgram { get; set; }
 
         [JsonProperty("Code")]
         public string Code { get; set; }
@@ -54,7 +52,7 @@ namespace lc.fitnesspro.library.Model
         public Guid EducationFormKey { get; set; }
         [CanExpand("ФормаОбучения")]
         [JsonProperty("ФормаОбучения")]
-        public ExpandedEntity EducationForm { get; set; }
+        public EducationForm EducationForm { get; set; }
 
         [JsonProperty("ДатаУтверждения")]
         public DateTime SignAt { get; set; }
@@ -66,25 +64,26 @@ namespace lc.fitnesspro.library.Model
         public Guid QualificationKey { get; set; }
         [CanExpand("ПрисваиваемаяКвалификация")]
         [JsonProperty("ПрисваиваемаяКвалификация")]
-        public ExpandedEntity Qualification { get; set; }
+        public Qualification Qualification { get; set; }
 
         [JsonProperty("ГруппаПрограммыОбучения_Key")]
-        public Guid EducationProgramGroupKey { get; set; }
+        public Guid EducationGroupKey { get; set; }
         [CanExpand("ГруппаПрограммыОбучения")]
         [JsonProperty("ГруппаПрограммыОбучения")]
-        public ExpandedEntity EducationProgramGroup { get; set; }
+        public EducationGroup EducationGroup { get; set; }
 
         [JsonProperty("НаправлениеПодготовки_Key")]
         public Guid EducationDirectionKey { get; set; }
         [CanExpand("НаправлениеПодготовки")]
         [JsonProperty("НаправлениеПодготовки")]
-        public ExpandedEntity EducationDirection { get; set; }
+        public EducationDirection EducationDirection { get; set; }
 
+        // Программа\Семинар
         [JsonProperty("ПФ_ТипМероприятия_Key")]
-        public Guid TypeKey { get; set; }
+        public Guid EducationVariantKey { get; set; }
         [CanExpand("ПФ_ТипМероприятия")]
         [JsonProperty("ПФ_ТипМероприятия")]
-        public ExpandedEntity Type { get; set; }
+        public EducationVariant EducationVariant { get; set; }
 
         [JsonProperty("Дисциплины")]
         public IEnumerable<DisciplineInfo> Disciplines { get; set; }

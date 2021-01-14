@@ -1,7 +1,6 @@
 ﻿namespace lc.fitnesspro.library.Model
 {
-    public class EducationType
-    {
-        
-    }
+    // Тип мероприятия - Стажировка\Практика\Обучение
+    public class EducationType : BasicEntity
+    {}
 }

@@ -43,7 +43,13 @@ namespace lc.fitnesspro.library
             dictionary.Add(typeof(Employee), "1CDB_FPA_DPO/odata/standard.odata/Catalog_Сотрудники");
             dictionary.Add(typeof(AssignDiscipline), "1CDB_FPA_DPO/odata/standard.odata/Document_УстановкаДисциплинДляПреподавателя");
             
-
+            dictionary.Add(typeof(EducationType), "1CDB_FPA_DPO/odata/standard.odata/Catalog_ВидыДопОбразования");
+            dictionary.Add(typeof(EducationForm), "1CDB_FPA_DPO/odata/standard.odata/Catalog_ФормыОбучения");
+            dictionary.Add(typeof(Qualification), "1CDB_FPA_DPO/odata/standard.odata/Catalog_Квалификации");
+            dictionary.Add(typeof(EducationDirection), "1CDB_FPA_DPO/odata/standard.odata/Catalog_СпециальностиДПО");
+            dictionary.Add(typeof(EducationVariant), "1CDB_FPA_DPO/odata/standard.odata/Catalog_ПФ_ТипМероприятия");
+            dictionary.Add(typeof(EducationGroup), "1CDB_FPA_DPO/odata/standard.odata/Catalog_ПФ_ГруппыПрограммОбучения");
+            
             //dictionary.Add(typeof(PayDocument), "1CDB_FPA_DPO/odata/standard.odata/Document_РегистрацияОплатИВозвратов");
         }
 
