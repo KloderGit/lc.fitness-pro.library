@@ -5,7 +5,7 @@ using Newtonsoft.Json;
 
 namespace lc.fitnesspro.library.Model
 {
-    public class ExpandedEntity
+    public class BasicEntity
     {
         [JsonProperty("Ref_Key")]
         public Guid Key { get; set; }
