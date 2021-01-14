@@ -7,10 +7,10 @@
     <PackageProjectUrl>https://github.com/KloderGit/lc.fitness-pro.library</PackageProjectUrl>
     <RepositoryUrl>https://github.com/KloderGit/lc.fitness-pro.library</RepositoryUrl>
     <RepositoryType>library</RepositoryType>
-    <Version>1.5.0</Version>
-    <AssemblyVersion>1.5.0.00</AssemblyVersion>
-    <FileVersion>1.5.0.0</FileVersion>
-    <PackageReleaseNotes>Добавлены репозитарии для вложенных сущностей</PackageReleaseNotes>
+    <Version>1.5.1</Version>
+    <AssemblyVersion>1.5.1.00</AssemblyVersion>
+    <FileVersion>1.5.1.0</FileVersion>
+    <PackageReleaseNotes></PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
