@@ -1,5 +1,5 @@
 ﻿namespace lc.fitnesspro.library.Model
 {
-    public class EducationForm : BasicEntity
+    public class EducationForm : Catalog
     {}
 }

@@ -10,25 +10,20 @@ using Newtonsoft.Json.Converters;
 
 namespace lc.fitnesspro.library.Model
 {
-    public class Contract : IDocument
+    public class Contract : Document, IDocument
     {
-        [JsonProperty("Ref_Key")]
-        public Guid Key { get; set; }
+        private string number;
 
-        [JsonProperty("DataVersion")]
-        public string DataVersion { get; set; }
-
-        [JsonProperty("DeletionMark")]
-        public bool DeletionMark { get; set; }
-
+        [Obsolete]
         [JsonProperty("Number")]
-        public string Number { get; set; }
+        public string Number
+        {
+            get => number;
+            set { Code =  number = value; }
+        }
 
         [JsonProperty("Date")]
         public DateTime SigningDate { get; set; }
-
-        [JsonProperty("Posted")]
-        public bool Posted { get; set; }
 
         [JsonProperty("НомерДоговора")]
         public string RegisterTitle { get; set; }

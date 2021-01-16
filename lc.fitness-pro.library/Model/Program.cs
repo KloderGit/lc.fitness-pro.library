@@ -6,22 +6,26 @@ using System.Text;
 
 namespace lc.fitnesspro.library.Model
 {
-    public class Program
+    public class Program : Catalog
     {
+        private Guid refKey;
+
+        [Obsolete]
         [JsonProperty("Ref_Key")]
-        public Guid RefKey { get; set; }
+        public Guid RefKey
+        {
+            get => refKey;
+            set => Key = refKey = value;
+        }
 
         [JsonProperty("ПолноеНаименование")]
-        public string Title { get; set; }
+        public new string Title { get; set; }
 
         [JsonProperty("Часы")]
         public long Hours { get; set; }
 
         [JsonProperty("Description")]
         public string Description { get; set; }
-
-        [JsonProperty("DeletionMark")]
-        public bool DeletionMark { get; set; }
 
         [JsonProperty("Цена")]
         public int Price { get; set; }
@@ -32,9 +36,6 @@ namespace lc.fitnesspro.library.Model
         [CanExpand("ВидПрограммы")]
         [JsonProperty("ВидПрограммы")]
         public EducationType KindOfProgram { get; set; }
-
-        [JsonProperty("Code")]
-        public string Code { get; set; }
 
         [JsonProperty("Примечание")]
         public string Comment { get; set; }

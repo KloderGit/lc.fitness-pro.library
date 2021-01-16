@@ -5,24 +5,16 @@ using System.Text;
 
 namespace lc.fitnesspro.library.Model
 {
-    public class Discipline
+    public class Discipline : Catalog
     {
-        [JsonProperty("Ref_Key")]
-        public Guid Key { get; set; }
+        private string description;
 
-        [JsonProperty("DataVersion")]
-        public string DataVersion { get; set; }
-
-        [JsonProperty("DeletionMark")]
-        public bool DeletionMark { get; set; }
-
-        [JsonProperty("Predefined")]
-        public bool Predefined { get; set; }
-
-        [JsonProperty("Code")]
-        public string Code { get; set; }
-
+        [Obsolete]
         [JsonProperty("Description")]
-        public string Description { get; set; }
+        public string Description
+        {
+            get => description;
+            set { Title = description = value; }
+        }
     }
 }

@@ -5,20 +5,8 @@ using System.Text;
 
 namespace lc.fitnesspro.library.Model
 {
-    public class AssignDiscipline
+    public class AssignDiscipline : Document
     {
-        [JsonProperty("Ref_Key")]
-        public Guid Key { get; set; }
-
-        [JsonProperty("DataVersion")]
-        public string DataVersion { get; set; }
-
-        [JsonProperty("DeletionMark")]
-        public bool DeletionMark { get; set; }
-
-        [JsonProperty("Number")]
-        public string Code { get; set; }
-
         [JsonProperty("ПФ_Преподаватели")]
         public IEnumerable<TeacherForDiscipline> Teachers { get; set; }
 
