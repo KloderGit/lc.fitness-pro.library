@@ -18,6 +18,9 @@ namespace lc.fitnesspro.library
         private EmployeeRepository employeeRepository;
         private AssignDisciplineRepository assignDisciplineRepository;
         
+        private Repository<Group> groupRepository;
+        private Repository<SubGroup> subGroupRepository;
+        
         private Repository<EducationType> educationTypeRepository;
         private Repository<EducationForm> educationFormRepository;
         private Repository<Qualification> qualificationRepository;
@@ -168,5 +171,8 @@ namespace lc.fitnesspro.library
                 else return educationGroupRepository;
             }
         }
+        
+        public Repository<Group> Group => groupRepository ?? (groupRepository = new Repository<Group>(connection));
+        public Repository<SubGroup> SubGroup => subGroupRepository ?? (subGroupRepository = new Repository<SubGroup>(connection));
     }
 }
