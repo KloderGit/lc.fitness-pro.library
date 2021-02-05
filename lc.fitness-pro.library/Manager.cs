@@ -109,69 +109,14 @@ namespace lc.fitnesspro.library
             }
         }
 
-        public AssignDisciplineRepository AssignDiscipline
-        {
-            get
-            {
-                if (assignDisciplineRepository == null) { assignDisciplineRepository = new AssignDisciplineRepository(connection); return assignDisciplineRepository; }
-                else return assignDisciplineRepository;
-            }
-        }
 
-        public Repository<EducationType> EducationType
-        {
-            get
-            {
-                if (educationTypeRepository == null) { educationTypeRepository = new Repository<EducationType>(connection); return educationTypeRepository; }
-                else return educationTypeRepository;
-            }
-        }
-        
-        public Repository<EducationForm> EducationForm
-        {
-            get
-            {
-                if (educationFormRepository == null) { educationFormRepository = new Repository<EducationForm>(connection); return educationFormRepository; }
-                else return educationFormRepository;
-            }
-        }
-        
-        public Repository<Qualification> Qualification
-        {
-            get
-            {
-                if (qualificationRepository == null) { qualificationRepository = new Repository<Qualification>(connection); return qualificationRepository; }
-                else return qualificationRepository;
-            }
-        }
-        
-        public Repository<EducationDirection> EducationDirection
-        {
-            get
-            {
-                if (educationDirectionRepository == null) { educationDirectionRepository = new Repository<EducationDirection>(connection); return educationDirectionRepository; }
-                else return educationDirectionRepository;
-            }
-        }
-        
-        public Repository<EducationVariant> EducationVariant
-        {
-            get
-            {
-                if (educationVariantRepository == null) { educationVariantRepository = new Repository<EducationVariant>(connection); return educationVariantRepository; }
-                else return educationVariantRepository;
-            }
-        }
-        
-        public Repository<EducationGroup> EducationGroup
-        {
-            get
-            {
-                if (educationGroupRepository == null) { educationGroupRepository = new Repository<EducationGroup>(connection); return educationGroupRepository; }
-                else return educationGroupRepository;
-            }
-        }
-        
+        public AssignDisciplineRepository AssignDiscipline => assignDisciplineRepository ?? (assignDisciplineRepository = new AssignDisciplineRepository(connection));
+        public Repository<EducationType> EducationType => educationTypeRepository ?? (educationTypeRepository = new Repository<EducationType>(connection));
+        public Repository<EducationForm> EducationForm => educationFormRepository ?? (educationFormRepository = new Repository<EducationForm>(connection));
+        public Repository<Qualification> Qualification => qualificationRepository ?? (qualificationRepository = new Repository<Qualification>(connection));
+        public Repository<EducationDirection> EducationDirection => educationDirectionRepository ?? (educationDirectionRepository = new Repository<EducationDirection>(connection));
+        public Repository<EducationVariant> EducationVariant => educationVariantRepository ?? (educationVariantRepository = new Repository<EducationVariant>(connection));
+        public Repository<EducationGroup> EducationGroup => educationGroupRepository ?? (educationGroupRepository = new Repository<EducationGroup>(connection));
         public Repository<Group> Group => groupRepository ?? (groupRepository = new Repository<Group>(connection));
         public Repository<SubGroup> SubGroup => subGroupRepository ?? (subGroupRepository = new Repository<SubGroup>(connection));
     }
