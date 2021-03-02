@@ -6,9 +6,14 @@ namespace lc.fitnesspro.library.Misc
 {
     public class QueryBuilder<T> : IQuery<T>
     {
-        private readonly SelectQueryGenerator selectQueryGenerator = new SelectQueryGenerator();
-        private readonly ExpandQueryGenerator expandQueryGenerator = new ExpandQueryGenerator();
-        private readonly FilterQueryGenerator filterQueryGenerator = new FilterQueryGenerator();
+        private SelectQueryGenerator selectQueryGenerator = new SelectQueryGenerator();
+        private ExpandQueryGenerator expandQueryGenerator = new ExpandQueryGenerator();
+        private FilterQueryGenerator filterQueryGenerator = new FilterQueryGenerator();
+
+        public QueryBuilder()
+        {
+            Prepare();
+        }
 
         private string queryString = "?$format=json";
 
@@ -33,6 +38,15 @@ namespace lc.fitnesspro.library.Misc
             if (selectQueryGenerator.IsSelectAvialable) queryString += "&" + selectQueryGenerator.Build();
 
             return queryString;
+        }
+
+        public void Prepare()
+        {
+            selectQueryGenerator = new SelectQueryGenerator();
+            expandQueryGenerator = new ExpandQueryGenerator();
+            filterQueryGenerator = new FilterQueryGenerator();
+
+            queryString = "?$format=json";
         }
     }
 }

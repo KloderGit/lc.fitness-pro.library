@@ -6,7 +6,8 @@ using System.Text;
 namespace lc.fitnesspro.library.Interface
 {
     public interface IQuery<T>
-    {        
+    {
+        void Prepare();
         void Select(Expression<Func<T, object>> expression);
         void Expand(Expression<Func<T, object>> expression);
         void Filter(Expression<Predicate<T>> expression);

@@ -58,6 +58,8 @@ namespace lc.fitnesspro.library
 
             var result = await requestResult.Content.ReadAsAsync<ODataResponse<TResult>>();
 
+            Query.Prepare();
+
             return result.value;
         }
 
