@@ -114,5 +114,10 @@ namespace lc.fitnesspro.library
             Query.OrAlso();
             return this;
         }
+
+        public string DebugViewQuery()
+        {
+            return Query.Build();
+        }
     }
 }
