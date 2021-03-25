@@ -18,6 +18,8 @@ namespace lc.fitnesspro.library.Interface
         IRepository<T> Or();
         IRepository<T> AndAlso();
         IRepository<T> OrAlso();
-        string DebugViewQuery();
+        dynamic DebugViewQuery();
+        void ClearQuery();
+        bool CheckQueryLength(int length);
     }
 }

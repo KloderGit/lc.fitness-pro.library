@@ -115,9 +115,28 @@ namespace lc.fitnesspro.library
             return this;
         }
 
-        public string DebugViewQuery()
+        public dynamic DebugViewQuery()
         {
-            return Query.Build();
+            var query = Query.Build();
+
+            var debug = new { 
+                FullQuery = query,
+                QueryLength = query.Length
+            };
+
+            return debug;
+        }
+
+        public bool CheckQueryLength(int length)
+        {
+            var query = Query.Build();
+
+            return query.Length > length;
+        }
+
+        public void ClearQuery()
+        {
+            this.Query.Clear();
         }
     }
 }

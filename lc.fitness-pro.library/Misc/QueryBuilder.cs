@@ -42,11 +42,16 @@ namespace lc.fitnesspro.library.Misc
 
         public void Prepare()
         {
+            Clear();
+
+            queryString = "?$format=json";
+        }
+
+        public void Clear()
+        {
             selectQueryGenerator = new SelectQueryGenerator();
             expandQueryGenerator = new ExpandQueryGenerator();
             filterQueryGenerator = new FilterQueryGenerator();
-
-            queryString = "?$format=json";
         }
     }
 }
