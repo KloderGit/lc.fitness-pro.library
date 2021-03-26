@@ -10,8 +10,6 @@ namespace lc.fitnesspro.library.Misc
         private ExpandQueryGenerator expandQueryGenerator = new ExpandQueryGenerator();
         private FilterQueryGenerator filterQueryGenerator = new FilterQueryGenerator();
 
-        private string builtString = String.Empty;
-
         public void Filter(Expression<Predicate<T>> expression) => filterQueryGenerator.AddExpression(expression);
 
         public void And() => filterQueryGenerator.AddAnd();
@@ -28,28 +26,22 @@ namespace lc.fitnesspro.library.Misc
 
         public string Build()
         {
-            if (String.IsNullOrEmpty(builtString) == false) return builtString;
-
             var jsonParam = "?$format=json";
 
-            builtString = jsonParam;
+            var result = jsonParam;
 
-            if (filterQueryGenerator.IsFilterAvialable) builtString += "&" + filterQueryGenerator.Build();
-            if (expandQueryGenerator.IsExpandAvialable) builtString += "&" + expandQueryGenerator.Build();
-            if (selectQueryGenerator.IsSelectAvialable) builtString += "&" + selectQueryGenerator.Build();
+            if (filterQueryGenerator.IsFilterAvialable) result += "&" + filterQueryGenerator.Build();
+            if (expandQueryGenerator.IsExpandAvialable) result += "&" + expandQueryGenerator.Build();
+            if (selectQueryGenerator.IsSelectAvialable) result += "&" + selectQueryGenerator.Build();
 
-            return builtString;
+            return result;
         }
-
-        public string GetBuiltQuery() => builtString;
 
         public void Clear()
         {
             selectQueryGenerator = new SelectQueryGenerator();
             expandQueryGenerator = new ExpandQueryGenerator();
             filterQueryGenerator = new FilterQueryGenerator();
-
-            builtString = String.Empty;
         }
     }
 }
