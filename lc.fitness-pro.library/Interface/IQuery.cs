@@ -17,5 +17,6 @@ namespace lc.fitnesspro.library.Interface
         void AndAlso();
         void OrAlso();
         void Clear();
+        string GetBuiltQuery();
     }
 }

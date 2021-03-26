@@ -41,6 +41,8 @@ namespace lc.fitnesspro.library.Misc
             return builtString;
         }
 
+        internal string GetBuiltQuery() => builtString;
+
         public void Clear()
         {
             selectQueryGenerator = new SelectQueryGenerator();

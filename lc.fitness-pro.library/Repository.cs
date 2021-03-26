@@ -117,7 +117,7 @@ namespace lc.fitnesspro.library
 
         public dynamic DebugViewQuery()
         {
-            var query = Query.Build();
+            var query = Query.GetBuiltQuery();
 
             var debug = new { 
                 FullQuery = query,
@@ -127,9 +127,9 @@ namespace lc.fitnesspro.library
             return debug;
         }
 
-        public bool CheckQueryLength(int length)
+        public bool IsQueryLengthMoreThen(int length)
         {
-            var query = Query.Build();
+            var query = Query.GetBuiltQuery();
 
             return query.Length > length;
         }
