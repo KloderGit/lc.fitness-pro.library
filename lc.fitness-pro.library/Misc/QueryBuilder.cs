@@ -10,12 +10,7 @@ namespace lc.fitnesspro.library.Misc
         private ExpandQueryGenerator expandQueryGenerator = new ExpandQueryGenerator();
         private FilterQueryGenerator filterQueryGenerator = new FilterQueryGenerator();
 
-        public QueryBuilder()
-        {
-            Prepare();
-        }
-
-        private string queryString = "?$format=json";
+        private string builtString = String.Empty;
 
         public void Filter(Expression<Predicate<T>> expression) => filterQueryGenerator.AddExpression(expression);
 
@@ -28,23 +23,22 @@ namespace lc.fitnesspro.library.Misc
         public void OrAlso() => filterQueryGenerator.OrAlso();
 
         public void Select(Expression<Func<T, object>> expression) => selectQueryGenerator.AddExpression(expression);
-        
+
         public void Expand(Expression<Func<T, object>> expression) => expandQueryGenerator.AddExpression(expression);
 
         public string Build()
         {
-            if (filterQueryGenerator.IsFilterAvialable) queryString += "&" + filterQueryGenerator.Build();
-            if (expandQueryGenerator.IsExpandAvialable) queryString += "&" + expandQueryGenerator.Build();
-            if (selectQueryGenerator.IsSelectAvialable) queryString += "&" + selectQueryGenerator.Build();
+            if (String.IsNullOrEmpty(builtString) == false) return builtString;
 
-            return queryString;
-        }
+            var jsonParam = "?$format=json";
 
-        public void Prepare()
-        {
-            Clear();
+            builtString = jsonParam;
 
-            queryString = "?$format=json";
+            if (filterQueryGenerator.IsFilterAvialable) builtString += "&" + filterQueryGenerator.Build();
+            if (expandQueryGenerator.IsExpandAvialable) builtString += "&" + expandQueryGenerator.Build();
+            if (selectQueryGenerator.IsSelectAvialable) builtString += "&" + selectQueryGenerator.Build();
+
+            return builtString;
         }
 
         public void Clear()
@@ -52,6 +46,8 @@ namespace lc.fitnesspro.library.Misc
             selectQueryGenerator = new SelectQueryGenerator();
             expandQueryGenerator = new ExpandQueryGenerator();
             filterQueryGenerator = new FilterQueryGenerator();
+
+            builtString = String.Empty;
         }
     }
 }

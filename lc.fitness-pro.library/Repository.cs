@@ -40,6 +40,8 @@ namespace lc.fitnesspro.library
         {
             var queryString = Query.Build();
 
+            Query.Clear();
+
             var result = await GetByQuery(queryString);
 
             return result;
@@ -57,8 +59,6 @@ namespace lc.fitnesspro.library
             var requestResult = await DoGetRequest(queryString);
 
             var result = await requestResult.Content.ReadAsAsync<ODataResponse<TResult>>();
-
-            Query.Prepare();
 
             return result.value;
         }
