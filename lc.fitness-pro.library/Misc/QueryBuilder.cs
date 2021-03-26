@@ -41,7 +41,7 @@ namespace lc.fitnesspro.library.Misc
             return builtString;
         }
 
-        internal string GetBuiltQuery() => builtString;
+        public string GetBuiltQuery() => builtString;
 
         public void Clear()
         {

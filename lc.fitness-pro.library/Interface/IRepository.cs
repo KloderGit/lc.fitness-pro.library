@@ -20,6 +20,6 @@ namespace lc.fitnesspro.library.Interface
         IRepository<T> OrAlso();
         dynamic DebugViewQuery();
         void ClearQuery();
-        bool CheckQueryLength(int length);
+        bool IsQueryLengthMoreThen(int length);
     }
 }
