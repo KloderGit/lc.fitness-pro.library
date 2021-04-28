@@ -115,6 +115,14 @@ namespace lc.fitnesspro.library
             return this;
         }
 
+        public string GetQueryString()
+        { 
+            var query = Query.Build();
+
+            return query;
+        }
+
+
         public dynamic DebugViewQuery()
         {
             var query = Query.Build();

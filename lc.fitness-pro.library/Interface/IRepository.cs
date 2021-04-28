@@ -21,5 +21,6 @@ namespace lc.fitnesspro.library.Interface
         dynamic DebugViewQuery();
         void ClearQuery();
         bool IsQueryLengthMoreThen(int length);
+        string GetQueryString();
     }
 }
