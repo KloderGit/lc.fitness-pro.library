@@ -18,7 +18,7 @@ namespace lc.fitnesspro.library.Model
         }
 
         [JsonProperty("ВидНагрузки")]
-        public string ControlType { get; set; }
+        public Guid ControlType { get; set; }
 
         [JsonProperty("СистемыОценки")]
         public IEnumerable<ControlType> RateType { get; set; }

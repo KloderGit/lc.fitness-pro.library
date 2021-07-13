@@ -49,6 +49,7 @@ namespace lc.fitnesspro.library
             dictionary.Add(typeof(EducationDirection), "1CDB_FPA_DPO/odata/standard.odata/Catalog_СпециальностиДПО");
             dictionary.Add(typeof(EducationVariant), "1CDB_FPA_DPO/odata/standard.odata/Catalog_ПФ_ТипМероприятия");
             dictionary.Add(typeof(EducationGroup), "1CDB_FPA_DPO/odata/standard.odata/Catalog_ПФ_ГруппыПрограммОбучения");
+            dictionary.Add(typeof(AttestationTable), "1CDB_FPA_DPO/odata/standard.odata/Document_ЭкзаменационнаяВедомостьДПО");
             
             //dictionary.Add(typeof(PayDocument), "1CDB_FPA_DPO/odata/standard.odata/Document_РегистрацияОплатИВозвратов");
         }
