@@ -17,6 +17,7 @@ namespace lc.fitnesspro.library
         private ControlRepository controlRepository;
         private EmployeeRepository employeeRepository;
         private AssignDisciplineRepository assignDisciplineRepository;
+        private AttestationTableRepository attestationTableRepository;
         
         private Repository<Group> groupRepository;
         private Repository<SubGroup> subGroupRepository;
@@ -56,5 +57,6 @@ namespace lc.fitnesspro.library
         public Repository<EducationGroup> EducationGroup => educationGroupRepository ?? (educationGroupRepository = new Repository<EducationGroup>(connection));
         public Repository<Group> Group => groupRepository ?? (groupRepository = new Repository<Group>(connection));
         public Repository<SubGroup> SubGroup => subGroupRepository ?? (subGroupRepository = new Repository<SubGroup>(connection));
+        public Repository<AttestationTable> AttestationTable => attestationTableRepository ?? (attestationTableRepository = new AttestationTableRepository(connection));
     }
 }
