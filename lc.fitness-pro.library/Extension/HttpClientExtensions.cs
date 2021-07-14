@@ -27,7 +27,7 @@ namespace lc.fitnesspro.library.Extension
         public static async Task<T> ReadAsAsync<T>(this HttpContent httpContent)
         {
             var response = await httpContent.ReadAsStringAsync().ConfigureAwait(false);
-            var result = JsonConvert.DeserializeObject<T>(response, new JsonSerializerSettings { DefaultValueHandling = DefaultValueHandling.Ignore, NullValueHandling = NullValueHandling.Ignore });
+            var result = JsonConvert.DeserializeObject<T>(response, serializerSettings);
 
             return result;
         }

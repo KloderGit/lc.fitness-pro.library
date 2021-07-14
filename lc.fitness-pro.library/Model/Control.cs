@@ -17,7 +17,7 @@ namespace lc.fitnesspro.library.Model
             set { Title = description = value; }
         }
 
-        [JsonProperty("ВидНагрузки")]
+        [JsonProperty("СистемаОценки_Key")]
         public Guid ControlType { get; set; }
 
         [JsonProperty("СистемыОценки")]

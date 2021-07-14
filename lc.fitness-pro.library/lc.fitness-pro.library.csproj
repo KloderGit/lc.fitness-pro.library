@@ -7,11 +7,11 @@
     <PackageProjectUrl>https://github.com/KloderGit/lc.fitness-pro.library</PackageProjectUrl>
     <RepositoryUrl>https://github.com/KloderGit/lc.fitness-pro.library</RepositoryUrl>
     <RepositoryType>library</RepositoryType>
-    <Version>1.6.0.1</Version>
-    <AssemblyVersion>1.6.0.1</AssemblyVersion>
-    <FileVersion>1.6.0.1</FileVersion>
+    <Version>1.6.1</Version>
+    <AssemblyVersion>1.6.1</AssemblyVersion>
+    <FileVersion>1.6.1</FileVersion>
     <PackageReleaseNotes></PackageReleaseNotes>
-    <PackageVersion>1.6.0.1</PackageVersion>
+    <PackageVersion>1.6.1</PackageVersion>
   </PropertyGroup>
 
   <ItemGroup>
