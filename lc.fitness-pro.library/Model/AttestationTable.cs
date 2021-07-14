@@ -48,6 +48,11 @@ namespace lc.fitnesspro.library.Model
                 count++;
             }
         }
+
+        public bool Validate()
+        { 
+            return Date != default;
+        }
     }
 
     public class AttestationStudent : IRegisterUnit
