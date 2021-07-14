@@ -22,5 +22,6 @@ namespace lc.fitnesspro.library.Interface
         Repository<EducationGroup> EducationGroup { get; }
         Repository<Group> Group { get; }
         Repository<SubGroup> SubGroup { get; }
+        AttestationTableRepository AttestationTable { get; }
     }
 }
