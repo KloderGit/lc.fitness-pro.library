@@ -6,13 +6,20 @@ using System.Text;
 
 namespace lc.fitnesspro.library.Model
 {
-    public class Program
+    public class Program : Catalog
     {
+        private Guid refKey;
+
+        [Obsolete]
         [JsonProperty("Ref_Key")]
-        public Guid RefKey { get; set; }
+        public Guid RefKey
+        {
+            get => refKey;
+            set => Key = refKey = value;
+        }
 
         [JsonProperty("ПолноеНаименование")]
-        public string Title { get; set; }
+        public new string Title { get; set; }
 
         [JsonProperty("Часы")]
         public long Hours { get; set; }
@@ -20,22 +27,15 @@ namespace lc.fitnesspro.library.Model
         [JsonProperty("Description")]
         public string Description { get; set; }
 
-        [JsonProperty("DeletionMark")]
-        public bool DeletionMark { get; set; }
-
         [JsonProperty("Цена")]
         public int Price { get; set; }
 
-        [CanExpand("Специальность")]
-        [JsonProperty("Специальность_Key")]
-        public Guid MajorKey { get; set; }
-
-        [CanExpand("ВидПрограммы")]
+        // Тип мероприятия - Стажировка\Практика\Обучение
         [JsonProperty("ВидПрограммы_Key")]
-        public Guid KindOfKey { get; set; }
-
-        [JsonProperty("Code")]
-        public string Code { get; set; }
+        public Guid KindOfProgramKey { get; set; }
+        [CanExpand("ВидПрограммы")]
+        [JsonProperty("ВидПрограммы")]
+        public EducationType KindOfProgram { get; set; }
 
         [JsonProperty("Примечание")]
         public string Comment { get; set; }
@@ -46,13 +46,14 @@ namespace lc.fitnesspro.library.Model
         [JsonProperty("Сертифицируемый")]
         public bool IsSertificated { get; set; }
 
-        [CanExpand("ВыдаваемыйДокумент")]
         [JsonProperty("ВыдаваемыйДокумент_Key")]
         public Guid GraduateDocumentKey { get; set; }
 
-        [CanExpand("ФормаОбучения")]
         [JsonProperty("ФормаОбучения_Key")]
         public Guid EducationFormKey { get; set; }
+        [CanExpand("ФормаОбучения")]
+        [JsonProperty("ФормаОбучения")]
+        public EducationForm EducationForm { get; set; }
 
         [JsonProperty("ДатаУтверждения")]
         public DateTime SignAt { get; set; }
@@ -60,21 +61,30 @@ namespace lc.fitnesspro.library.Model
         [JsonProperty("ВсегоЧасов")]
         public int TotalHours { get; set; }
 
-        [CanExpand("ПрисваиваемаяКвалификация")]
         [JsonProperty("ПрисваиваемаяКвалификация_Key")]
         public Guid QualificationKey { get; set; }
+        [CanExpand("ПрисваиваемаяКвалификация")]
+        [JsonProperty("ПрисваиваемаяКвалификация")]
+        public Qualification Qualification { get; set; }
 
-        [CanExpand("ГруппаПрограммыОбучения")]
         [JsonProperty("ГруппаПрограммыОбучения_Key")]
-        public Guid EducationProgramGroupKey { get; set; }
+        public Guid EducationGroupKey { get; set; }
+        [CanExpand("ГруппаПрограммыОбучения")]
+        [JsonProperty("ГруппаПрограммыОбучения")]
+        public EducationGroup EducationGroup { get; set; }
 
-        [CanExpand("НаправлениеПодготовки")]
         [JsonProperty("НаправлениеПодготовки_Key")]
         public Guid EducationDirectionKey { get; set; }
+        [CanExpand("НаправлениеПодготовки")]
+        [JsonProperty("НаправлениеПодготовки")]
+        public EducationDirection EducationDirection { get; set; }
 
-        [CanExpand("ПФ_ТипМероприятия")]
+        // Программа\Семинар
         [JsonProperty("ПФ_ТипМероприятия_Key")]
-        public Guid TypeKey { get; set; }
+        public Guid EducationVariantKey { get; set; }
+        [CanExpand("ПФ_ТипМероприятия")]
+        [JsonProperty("ПФ_ТипМероприятия")]
+        public EducationVariant EducationVariant { get; set; }
 
         [JsonProperty("Дисциплины")]
         public IEnumerable<DisciplineInfo> Disciplines { get; set; }
@@ -88,6 +98,7 @@ namespace lc.fitnesspro.library.Model
         [JsonProperty("ВыдаваемыеДокументы")]
         public IEnumerable<IssuedDocument> IssuedDocuments { get; set; }
     }
+
 
     public class IssuedDocument
     {

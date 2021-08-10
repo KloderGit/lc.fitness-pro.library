@@ -44,5 +44,16 @@ namespace lc.library.test
 
             var tret = query.Build();
         }
+        
+        [TestMethod]
+        public void QueryDatetimeTest()
+        {
+            var query = new QueryBuilder<Group>();
+
+            
+            query.Filter(x => x.Start > DateTime.Now);
+
+            var tret = query.Build();
+        }
     }
 }

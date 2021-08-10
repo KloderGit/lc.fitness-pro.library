@@ -40,6 +40,8 @@ namespace lc.fitnesspro.library
         {
             var queryString = Query.Build();
 
+            Query.Clear();
+
             var result = await GetByQuery(queryString);
 
             return result;
@@ -69,6 +71,15 @@ namespace lc.fitnesspro.library
             var response = await client.GetAsync(url).ConfigureAwait(false);
 
             return response;
+        }
+
+        public async Task Delete(Guid key)
+        {
+            var client = connection.GetClient();
+            var uri = connection.GetURI(typeof(T));
+            var url = uri + "(guid'" + key.ToString() + "')";
+
+            var response = await client.DeleteAsync(url).ConfigureAwait(false);
         }
 
         public IRepository<T> Select(Expression<Func<T, object>> expression)
@@ -111,6 +122,39 @@ namespace lc.fitnesspro.library
         {
             Query.OrAlso();
             return this;
+        }
+
+        public string GetQueryString()
+        {
+            var query = Query.Build();
+
+            return query;
+        }
+
+
+        public dynamic DebugViewQuery()
+        {
+            var query = Query.Build();
+
+            var debug = new
+            {
+                FullQuery = query,
+                QueryLength = query.Length
+            };
+
+            return debug;
+        }
+
+        public bool IsQueryLengthMoreThen(int length)
+        {
+            var query = Query.Build();
+
+            return query.Length > length;
+        }
+
+        public void ClearQuery()
+        {
+            this.Query.Clear();
         }
     }
 }

@@ -6,11 +6,9 @@ namespace lc.fitnesspro.library.Misc
 {
     public class QueryBuilder<T> : IQuery<T>
     {
-        private readonly SelectQueryGenerator selectQueryGenerator = new SelectQueryGenerator();
-        private readonly ExpandQueryGenerator expandQueryGenerator = new ExpandQueryGenerator();
-        private readonly FilterQueryGenerator filterQueryGenerator = new FilterQueryGenerator();
-
-        private string queryString = "?$format=json";
+        private SelectQueryGenerator selectQueryGenerator = new SelectQueryGenerator();
+        private ExpandQueryGenerator expandQueryGenerator = new ExpandQueryGenerator();
+        private FilterQueryGenerator filterQueryGenerator = new FilterQueryGenerator();
 
         public void Filter(Expression<Predicate<T>> expression) => filterQueryGenerator.AddExpression(expression);
 
@@ -23,16 +21,27 @@ namespace lc.fitnesspro.library.Misc
         public void OrAlso() => filterQueryGenerator.OrAlso();
 
         public void Select(Expression<Func<T, object>> expression) => selectQueryGenerator.AddExpression(expression);
-        
+
         public void Expand(Expression<Func<T, object>> expression) => expandQueryGenerator.AddExpression(expression);
 
         public string Build()
         {
-            if (filterQueryGenerator.IsFilterAvialable) queryString += "&" + filterQueryGenerator.Build();
-            if (expandQueryGenerator.IsExpandAvialable) queryString += "&" + expandQueryGenerator.Build();
-            if (selectQueryGenerator.IsSelectAvialable) queryString += "&" + selectQueryGenerator.Build();
+            var jsonParam = "?$format=json";
 
-            return queryString;
+            var result = jsonParam;
+
+            if (filterQueryGenerator.IsFilterAvialable) result += "&" + filterQueryGenerator.Build();
+            if (expandQueryGenerator.IsExpandAvialable) result += "&" + expandQueryGenerator.Build();
+            if (selectQueryGenerator.IsSelectAvialable) result += "&" + selectQueryGenerator.Build();
+
+            return result;
+        }
+
+        public void Clear()
+        {
+            selectQueryGenerator = new SelectQueryGenerator();
+            expandQueryGenerator = new ExpandQueryGenerator();
+            filterQueryGenerator = new FilterQueryGenerator();
         }
     }
 }

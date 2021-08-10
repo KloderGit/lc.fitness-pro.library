@@ -6,25 +6,17 @@ using System.Linq;
 
 namespace lc.fitnesspro.library.Model
 {
-    public class Person
+    public class Person : Catalog
     {
-        [JsonProperty("Ref_Key")]
-        public Guid Key { get; set; }
+        private string description;
 
-        [JsonProperty("DataVersion")]
-        public string DataVersion { get; set; }
-
-        [JsonProperty("DeletionMark")]
-        public bool DeletionMark { get; set; }
-
-        [JsonProperty("Predefined")]
-        public bool Predefined { get; set; }
-
-        [JsonProperty("Code")]
-        public string Code { get; set; }
-
+        [Obsolete]
         [JsonProperty("Description")]
-        public string Description { get; set; }
+        public string Description
+        {
+            get => description;
+            set { Title = description = value; }
+        }
 
         [JsonProperty("ДатаРождения")]
         public DateTime Birthday { get; set; }
@@ -69,34 +61,29 @@ namespace lc.fitnesspro.library.Model
         public List<Contact> Contacts { get; set; }
 
 
-        [CanExpand("Гражданство")]
         [JsonProperty("Гражданство_Key")]
         public Guid CitizenshipKey { get; set; }
-
+        [CanExpand("Гражданство")]
         [JsonProperty("Гражданство")]
-        public Citizenship Citizenship { get; set; }        
+        public Citizenship Citizenship { get; set; }
 
-
-        [CanExpand("Должность")]
         [JsonProperty("Должность_Key")]
         public Guid JobPositionKey { get; set; }
-
+        [CanExpand("Должность")]
         [JsonProperty("Должность")]
         public JobPosition JobPosition { get; set; }
 
 
-        [CanExpand("МестоРаботы")]
         [JsonProperty("МестоРаботы_Key")]
         public Guid CompanyKey { get; set; }
-
+        [CanExpand("МестоРаботы")]
         [JsonProperty("МестоРаботы")]
         public Company Company { get; set; }
 
 
-        [CanExpand("Ответственный")]
         [JsonProperty("Ответственный_Key")]
         public Guid ResponsiblePersonKey { get; set; }
-
+        [CanExpand("Ответственный")]
         [JsonProperty("Ответственный")]
         public ResponsibleUser ResponsibleUser { get; set; }        
     }

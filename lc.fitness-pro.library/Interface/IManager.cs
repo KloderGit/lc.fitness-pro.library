@@ -1,4 +1,6 @@
 ﻿using System;
+using lc.fitnesspro.library.Model;
+
 namespace lc.fitnesspro.library.Interface
 {
     public interface IManager
@@ -12,5 +14,14 @@ namespace lc.fitnesspro.library.Interface
         ControlRepository Control { get; }
         EmployeeRepository Employee { get; }
         AssignDisciplineRepository AssignDiscipline { get; }
+        Repository<EducationType> EducationType { get; }
+        Repository<EducationForm> EducationForm { get; }
+        Repository<Qualification> Qualification { get; }
+        Repository<EducationDirection> EducationDirection { get; }
+        Repository<EducationVariant> EducationVariant { get; }
+        Repository<EducationGroup> EducationGroup { get; }
+        Repository<Group> Group { get; }
+        Repository<SubGroup> SubGroup { get; }
+        AttestationTableRepository AttestationTable { get; }
     }
 }

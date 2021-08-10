@@ -10,25 +10,20 @@ using Newtonsoft.Json.Converters;
 
 namespace lc.fitnesspro.library.Model
 {
-    public class Contract : IDocument
+    public class Contract : Document, IDocument
     {
-        [JsonProperty("Ref_Key")]
-        public Guid Key { get; set; }
+        private string number;
 
-        [JsonProperty("DataVersion")]
-        public string DataVersion { get; set; }
-
-        [JsonProperty("DeletionMark")]
-        public bool DeletionMark { get; set; }
-
+        [Obsolete]
         [JsonProperty("Number")]
-        public string Number { get; set; }
+        public string Number
+        {
+            get => number;
+            set { Code =  number = value; }
+        }
 
         [JsonProperty("Date")]
         public DateTime SigningDate { get; set; }
-
-        [JsonProperty("Posted")]
-        public bool Posted { get; set; }
 
         [JsonProperty("НомерДоговора")]
         public string RegisterTitle { get; set; }
@@ -177,87 +172,5 @@ namespace lc.fitnesspro.library.Model
 
         [JsonProperty("ЮрФизЛицо")]
         public string PersonOrCompany { get; set; }
-    }
-
-    public class Payer
-    {
-        [JsonProperty("Ref_Key")]
-        public Guid Key { get; set; }
-
-        [JsonProperty("DataVersion")]
-        public string DataVersion { get; set; }
-
-        [JsonProperty("DeletionMark")]
-        public bool IsDelete { get; set; }
-
-        [JsonProperty("Predefined")]
-        public bool Predefined { get; set; }
-
-        [JsonProperty("Code")]
-        public string Code { get; set; }
-
-        [JsonProperty("Description")]
-        public string Description { get; set; }
-
-        [JsonProperty("ЮрФизЛицо")]
-        public string PersonOrCompany { get; set; }
-
-        [JsonProperty("НаименованиеПолное")]
-        public string Title { get; set; }
-    }
-
-    public class Group
-    {
-        [JsonProperty("Ref_Key")]
-        public Guid Key { get; set; }
-
-        [JsonProperty("DataVersion")]
-        public string DataVersion { get; set; }
-
-        [JsonProperty("DeletionMark")]
-        public bool IsDelete { get; set; }
-
-        [JsonProperty("Predefined")]
-        public bool Predefined { get; set; }
-
-        [JsonProperty("Code")]
-        public string Code { get; set; }
-
-        [JsonProperty("Description")]
-        public string Description { get; set; }
-
-        [JsonProperty("ПрограммаОбучения_Key")]
-        public Guid ProgramKey { get; set; }
-
-
-        [JsonProperty("ДатаНачалаОбучения")]
-        public DateTime StartDate { get; set; }
-
-        [JsonProperty("ДатаокончанияОбучения")]
-        public DateTime FinishDate { get; set; }
-    }
-
-    public class SubGroup
-    {
-        [JsonProperty("Ref_Key")]
-        public Guid Key { get; set; }
-
-        [JsonProperty("DataVersion")]
-        public string DataVersion { get; set; }
-
-        [JsonProperty("DeletionMark")]
-        public bool IsDelete { get; set; }
-
-        [JsonProperty("Predefined")]
-        public bool Predefined { get; set; }
-
-        [JsonProperty("Code")]
-        public string Code { get; set; }
-
-        [JsonProperty("Description")]
-        public string Description { get; set; }
-
-        [JsonProperty("Owner_Key")]
-        public Guid GroupKey { get; set; }
     }
 }

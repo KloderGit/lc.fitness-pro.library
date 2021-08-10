@@ -10,6 +10,7 @@ namespace lc.fitnesspro.library.Interface
        // Task<T> GetById(Guid key);
         Task<IEnumerable<T>> GetByFilter();
         Task<IEnumerable<T>> GetByQuery(string query);
+        Task Delete(Guid key);
 
         IRepository<T> Select(Expression<Func<T, object>> expression);
         IRepository<T> Expand(Expression<Func<T, object>> expression);
@@ -18,5 +19,9 @@ namespace lc.fitnesspro.library.Interface
         IRepository<T> Or();
         IRepository<T> AndAlso();
         IRepository<T> OrAlso();
+        dynamic DebugViewQuery();
+        void ClearQuery();
+        bool IsQueryLengthMoreThen(int length);
+        string GetQueryString();
     }
 }

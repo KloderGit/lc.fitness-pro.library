@@ -137,7 +137,9 @@ namespace lc.fitnesspro.library.Misc
                     val = $"'{i}'";
                     break;
                 case DateTime i:
-                    val = $"'{i.ToString("dd.MM.yyyy")}'";
+                    //datetime'2020-02-27T00:00:00'
+                    val = "datetime" + $"'{i.ToString("yyyy-MM-dd")}" + "T00:00:00'";
+                    //val = $"'{i.ToString("dd.MM.yyyy")}'";
                     break;
                 case bool i:
                     val = $"{i.ToString().ToLower()}";
