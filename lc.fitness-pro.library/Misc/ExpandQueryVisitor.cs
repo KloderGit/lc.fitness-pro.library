@@ -11,6 +11,10 @@ namespace lc.fitnesspro.library.Misc
     {
         ICollection<string> fieldsName = new List<string>();
 
+        public string GetResult => fieldsName.Any()
+            ? String.Join(",", fieldsName.Where(x => String.IsNullOrEmpty(x) == false))
+            : String.Empty;
+
         public Expression Apply(Expression expression)
         {
             return Visit(expression);
@@ -27,12 +31,9 @@ namespace lc.fitnesspro.library.Misc
         private string GetParamTitle(MemberExpression item)
         {
             var attributes = item.Member.GetCustomAttributes(false);
-            var jsonAttribute = attributes.FirstOrDefault(x => x.GetType() == typeof(CanExpandAttribute)) as CanExpandAttribute;
+            var jsonAttribute =
+                attributes.FirstOrDefault(x => x.GetType() == typeof(CanExpandAttribute)) as CanExpandAttribute;
             return jsonAttribute == null ? String.Empty : jsonAttribute.FieldTitle;
         }
-
-        public string GetResult => fieldsName.Any()
-            ? String.Join(",", fieldsName.Where(x => String.IsNullOrEmpty(x) == false))
-            : String.Empty;
     }
 }
