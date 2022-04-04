@@ -88,6 +88,9 @@ namespace lc.fitnesspro.library.Model
 
         [JsonProperty("Дисциплины")]
         public IEnumerable<DisciplineInfo> Disciplines { get; set; }
+        
+        [JsonProperty("ЗависимыеАттестации")]
+        public IEnumerable<DependedAttestation> DependedAttestations{ get; set; }
 
         [JsonProperty("Преподаватели")]
         public IEnumerable<Teacher> Teachers { get; set; }
@@ -118,6 +121,9 @@ namespace lc.fitnesspro.library.Model
         public Guid DisciplineKey { get; set; }
 
         public Discipline Discipline { get; set; }
+        
+        [JsonProperty("КлючСтроки")]
+        public int DependingKey { get; set; }
 
         [JsonProperty("Часы")]
         public int Hours { get; set; }
@@ -139,5 +145,17 @@ namespace lc.fitnesspro.library.Model
 
         [JsonProperty("Преподаватель_Key")]
         public Guid TeacherKey { get; set; }
+    }
+
+    public class DependedAttestation
+    {
+        [JsonProperty("LineNumber")]
+        public int LineNumber { get; set; }
+        
+        [JsonProperty("КлючСтроки")]
+        public int DependingKey { get; set; }
+        
+        [JsonProperty("Дисциплина_Key")]
+        public Guid DisciplineKey { get; set; }
     }
 }
