@@ -19,7 +19,7 @@ namespace lc.fitnesspro.library
         public HttpClient GetClient()
         {
             var client = new HttpClient();
-            client.BaseAddress = new Uri(@"https://195.239.87.70");
+            client.BaseAddress = new Uri(@"https://lcserver.fitness-pro.ru");
 
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(
                 "Basic", Convert.ToBase64String(System.Text.ASCIIEncoding.ASCII.GetBytes($"{account.GetLogin()}:{account.GetPassword()}")));
