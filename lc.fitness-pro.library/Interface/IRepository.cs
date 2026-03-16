@@ -19,6 +19,9 @@ namespace lc.fitnesspro.library.Interface
         IRepository<T> Or();
         IRepository<T> AndAlso();
         IRepository<T> OrAlso();
+        IRepository<T> Top(int? value);
+        IRepository<T> Skip(int? value);
+        
         dynamic DebugViewQuery();
         void ClearQuery();
         bool IsQueryLengthMoreThen(int length);

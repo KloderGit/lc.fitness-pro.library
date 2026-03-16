@@ -123,6 +123,18 @@ namespace lc.fitnesspro.library
             Query.OrAlso();
             return this;
         }
+        
+        public IRepository<T> Top(int? value)
+        {
+            Query.Top(value);
+            return this;
+        }
+        
+        public IRepository<T> Skip(int? value)
+        {
+            Query.Skip(value);
+            return this;
+        }
 
         public string GetQueryString()
         {

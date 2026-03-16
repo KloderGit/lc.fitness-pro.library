@@ -12,6 +12,8 @@ namespace lc.fitnesspro.library.Interface
         void Filter(Expression<Predicate<T>> expression);
         void And();
         void Or();
+        void Top(int? value);
+        void Skip(int? value);
 
         string Build();
         void AndAlso();
