@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Xml;
 
@@ -23,9 +24,9 @@ namespace lc.fitnesspro.library
             return this;
         }
 
-        public override async Task<IEnumerable<Program>> GetByFilter()
+        public override async Task<IEnumerable<Program>> GetByFilter(CancellationToken cancellationToken = default)
         {
-            var programs = await base.GetByFilter();
+            var programs = await base.GetByFilter(cancellationToken);
 
             if (includeDiscipline) programs = await IncludeDiscipline(programs);
 

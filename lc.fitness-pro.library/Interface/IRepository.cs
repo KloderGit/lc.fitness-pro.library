@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace lc.fitnesspro.library.Interface
@@ -8,8 +9,8 @@ namespace lc.fitnesspro.library.Interface
     public interface IRepository<T>
     {
        // Task<T> GetById(Guid key);
-        Task<IEnumerable<T>> GetByFilter();
-        Task<IEnumerable<T>> GetByQuery(string query);
+        Task<IEnumerable<T>> GetByFilter(CancellationToken cancellationToken = default);
+        Task<IEnumerable<T>> GetByQuery(string query, CancellationToken cancellationToken);
         Task Delete(Guid key);
 
         IRepository<T> Select(Expression<Func<T, object>> expression);

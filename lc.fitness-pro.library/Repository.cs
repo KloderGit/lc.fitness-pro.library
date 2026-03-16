@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Net.Http;
+using System.Threading;
 using System.Threading.Tasks;
 using lc.fitnesspro.library.Extension;
 using lc.fitnesspro.library.Interface;
@@ -36,39 +37,39 @@ namespace lc.fitnesspro.library
             return result;
         }
 
-        public virtual async Task<IEnumerable<T>> GetByFilter()
+        public virtual async Task<IEnumerable<T>> GetByFilter(CancellationToken cancellationToken = default)
         {
             var queryString = Query.Build();
 
             Query.Clear();
 
-            var result = await GetByQuery(queryString);
+            var result = await GetByQuery(queryString, cancellationToken);
 
             return result;
         }
 
-        public async Task<IEnumerable<T>> GetByQuery(string queryString)
+        public async Task<IEnumerable<T>> GetByQuery(string queryString, CancellationToken cancellationToken = default)
         {
-            var result = await GetByQuery<T>(queryString);
+            var result = await GetByQuery<T>(queryString, cancellationToken);
 
             return result;
         }
 
-        public async Task<IEnumerable<TResult>> GetByQuery<TResult>(string queryString)
+        public async Task<IEnumerable<TResult>> GetByQuery<TResult>(string queryString, CancellationToken cancellationToken = default)
         {
-            var requestResult = await DoGetRequest(queryString);
+            var requestResult = await DoGetRequest(queryString, cancellationToken);
 
             var result = await requestResult.Content.ReadAsAsync<ODataResponse<TResult>>();
 
             return result.value;
         }
 
-        private async Task<HttpResponseMessage> DoGetRequest(string queryString)
+        private async Task<HttpResponseMessage> DoGetRequest(string queryString, CancellationToken cancellationToken = default)
         {
             var client = connection.GetClient();
             var uri = connection.GetURI(typeof(T));
             var url = uri + queryString;
-            var response = await client.GetAsync(url).ConfigureAwait(false);
+            var response = await client.GetAsync(url, cancellationToken).ConfigureAwait(false);
 
             return response;
         }
