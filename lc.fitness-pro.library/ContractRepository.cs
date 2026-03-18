@@ -30,11 +30,11 @@ namespace lc.fitnesspro.library
             CancellationToken cancellationToken = default)
         {
             var programFilter = educationProgramKeys is null || educationProgramKeys.Count == 0
-                ? " and (ПрограммаОбучения_Key ne '00000000-0000-0000-0000-000000000000')"
+                ? " and (ПрограммаОбучения_Key ne guid'00000000-0000-0000-0000-000000000000')"
                 : " and (" + String.Join(" or ", educationProgramKeys.Select(x => GetItemFilter("ПрограммаОбучения_Key", x))) + ")";
             
             var groupFilter = groupKeys is null || groupKeys.Count == 0
-                ? " and (ГруппаСлушателя_Key ne '00000000-0000-0000-0000-000000000000')"
+                ? " and (ГруппаСлушателя_Key ne guid'00000000-0000-0000-0000-000000000000')"
                 : " and (" + String.Join(" or ", groupKeys.Select(x=>GetItemFilter("ГруппаСлушателя_Key", x))) + ")";
             
             var subGroupFilter = subGroupKeys is null || subGroupKeys.Count == 0
@@ -69,7 +69,7 @@ namespace lc.fitnesspro.library
 
             return result;
 
-            string GetItemFilter(string field, Guid programKey) => $"{field} eq '{programKey}'";
+            string GetItemFilter(string field, Guid programKey) => $"{field} eq guid'{programKey}'";
         }
         
         
