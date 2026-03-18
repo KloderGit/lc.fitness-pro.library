@@ -50,7 +50,7 @@ namespace lc.fitnesspro.library
                 : $"&$skip={skip}";
             
             var requestStringTemplate =
-                "$format=json" +
+                "?$format=json" +
                 "&$expand=ПрограммаОбучения,Слушатель,ГруппаСлушателя,ПодгруппаСлушателя" +
                 "&$select=ПрограммаОбучения/Ref_Key," +
                 "ПрограммаОбучения/Description," +
