@@ -27,7 +27,7 @@ namespace lc.fitnesspro.library
             
             var subGroupFilter = request.SubGroupKeys.Count == 0
                 ? ""
-                : " and" + String.Join(" or ", request.SubGroupKeys.Select(x=>GetItemFilter("ПодгруппаСлушателя_Key", x))) + ")";
+                : " and (" + String.Join(" or ", request.SubGroupKeys.Select(x=>GetItemFilter("ПодгруппаСлушателя_Key", x))) + ")";
             
             var topFilter = request.Top is null
                 ? ""
