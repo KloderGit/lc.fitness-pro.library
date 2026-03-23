@@ -47,13 +47,14 @@ namespace lc.library.test
                 List<Guid> subGroupKeys = null; // new List<Guid>();
                 int? top = 10;
                 int? skip = 5;
+                bool? isArchivedIncluded = null;
 
                 var programFilter = educationProgramKeys is null || educationProgramKeys.Count == 0
-                    ? " and (ПрограммаОбучения_Key ne '00000000-0000-0000-0000-000000000000')"
+                    ? " and (ПрограммаОбучения_Key ne guid'00000000-0000-0000-0000-000000000000')"
                     : " and (" + String.Join(" or ", educationProgramKeys.Select(x => GetItemFilter("ПрограммаОбучения_Key", x))) + ")";
             
                 var groupFilter = groupKeys is null || groupKeys.Count == 0
-                    ? " and (ГруппаСлушателя_Key ne '00000000-0000-0000-0000-000000000000')"
+                    ? ""
                     : " and (" + String.Join(" or ", groupKeys.Select(x=>GetItemFilter("ГруппаСлушателя_Key", x))) + ")";
             
                 var subGroupFilter = subGroupKeys is null || subGroupKeys.Count == 0
@@ -67,9 +68,13 @@ namespace lc.library.test
                 var skipFilter = skip is null
                     ? ""
                     : $"&$skip={skip}";
+
+                var isArchivedFilter = isArchivedIncluded is null || isArchivedIncluded.Value == true
+                    ? ""
+                    : " and (ПрограммаОбучения/Статус ne 'Архивный')";
             
                 var requestStringTemplate =
-                    "$format=json" +
+                    "?$format=json" +
                     "&$expand=ПрограммаОбучения,Слушатель,ГруппаСлушателя,ПодгруппаСлушателя" +
                     "&$select=ПрограммаОбучения/Ref_Key," +
                     "ПрограммаОбучения/Description," +
@@ -80,9 +85,9 @@ namespace lc.library.test
                     "ПодгруппаСлушателя/Ref_Key," +
                     "ПодгруппаСлушателя/Description" +
                     "&$filter=(DeletionMark eq false)" +
-                    " and (ГрупповойДоговор eq false)"
-                    + programFilter + groupFilter + subGroupFilter + topFilter + skipFilter;
-                ;
+                    " and (ГрупповойДоговор eq false)" +
+                    isArchivedFilter + 
+                    programFilter + groupFilter + subGroupFilter + topFilter + skipFilter;
             ;
             
             string GetItemFilter(string field, Guid programKey) => $"{field} eq '{programKey}'";

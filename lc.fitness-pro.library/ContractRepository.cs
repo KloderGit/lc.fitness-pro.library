@@ -27,6 +27,7 @@ namespace lc.fitnesspro.library
             List<Guid> subGroupKeys,
             int? top,
             int? skip,
+            bool? isArchivedIncluded,
             CancellationToken cancellationToken = default)
         {
             var programFilter = educationProgramKeys is null || educationProgramKeys.Count == 0
@@ -34,7 +35,7 @@ namespace lc.fitnesspro.library
                 : " and (" + String.Join(" or ", educationProgramKeys.Select(x => GetItemFilter("ПрограммаОбучения_Key", x))) + ")";
             
             var groupFilter = groupKeys is null || groupKeys.Count == 0
-                ? " and (ГруппаСлушателя_Key ne guid'00000000-0000-0000-0000-000000000000')"
+                ? ""
                 : " and (" + String.Join(" or ", groupKeys.Select(x=>GetItemFilter("ГруппаСлушателя_Key", x))) + ")";
             
             var subGroupFilter = subGroupKeys is null || subGroupKeys.Count == 0
@@ -48,6 +49,10 @@ namespace lc.fitnesspro.library
             var skipFilter = skip is null
                 ? ""
                 : $"&$skip={skip}";
+
+            var isArchivedFilter = isArchivedIncluded is null || isArchivedIncluded.Value == true
+                ? ""
+                : " and (ПрограммаОбучения/Статус ne 'Архивный')";
             
             var requestStringTemplate =
                 "?$format=json" +
@@ -61,9 +66,9 @@ namespace lc.fitnesspro.library
                 "ПодгруппаСлушателя/Ref_Key," +
                 "ПодгруппаСлушателя/Description" +
                 "&$filter=(DeletionMark eq false)" +
-                " and (ГрупповойДоговор eq false)"
-                + programFilter + groupFilter + subGroupFilter + topFilter + skipFilter;
-            ;
+                " and (ГрупповойДоговор eq false)" +
+                isArchivedFilter + 
+                programFilter + groupFilter + subGroupFilter + topFilter + skipFilter;
             
             var result = await GetByQuery<StudentEducationInfoSlim>(requestStringTemplate, cancellationToken);
 
