@@ -28,6 +28,8 @@ namespace lc.fitnesspro.library
             int? top,
             int? skip,
             bool? isArchivedIncluded,
+            DateTimeOffset? startDate,
+            DateTimeOffset? finishDate,
             CancellationToken cancellationToken = default)
         {
             var programFilter = educationProgramKeys is null || educationProgramKeys.Count == 0
@@ -53,6 +55,20 @@ namespace lc.fitnesspro.library
             var isArchivedFilter = isArchivedIncluded is null || isArchivedIncluded.Value == true
                 ? ""
                 : " and (ПрограммаОбучения/Статус ne 'Архивный')";
+
+            var startDateFilter = "";
+            if (startDate != null)
+            {
+                var date = startDate.Value.UtcDateTime.ToString("yyyy-MM-ddTHH:mm:ss");
+                startDateFilter = $" and (ГруппаСлушателя/ДатаНачалаОбучения ge datetime'{date}')";
+            }
+            
+            var finishDateFilter = "";
+            if (finishDate != null)
+            {
+                var date = finishDate.Value.UtcDateTime.ToString("yyyy-MM-ddTHH:mm:ss");
+                finishDateFilter = $" and (ГруппаСлушателя/ДатаокончанияОбучения le datetime'{date}')";
+            }
             
             var requestStringTemplate =
                 "?$format=json" +
@@ -68,6 +84,8 @@ namespace lc.fitnesspro.library
                 "&$filter=(DeletionMark eq false)" +
                 " and (ГрупповойДоговор eq false)" +
                 isArchivedFilter + 
+                startDateFilter +
+                finishDateFilter +
                 programFilter + groupFilter + subGroupFilter + topFilter + skipFilter;
             
             var result = await GetByQuery<StudentEducationInfoSlim>(requestStringTemplate, cancellationToken);
