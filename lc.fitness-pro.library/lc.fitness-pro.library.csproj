@@ -11,7 +11,7 @@
     <AssemblyVersion>1.7.5</AssemblyVersion>
     <FileVersion>1.7.5</FileVersion>
     <PackageReleaseNotes></PackageReleaseNotes>
-    <PackageVersion>1.7.4</PackageVersion>
+    <PackageVersion>1.7.5</PackageVersion>
   </PropertyGroup>
 
   <ItemGroup>
