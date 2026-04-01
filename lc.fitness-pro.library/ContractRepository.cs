@@ -94,8 +94,29 @@ namespace lc.fitnesspro.library
 
             string GetItemFilter(string field, Guid programKey) => $"{field} eq guid'{programKey}'";
         }
-        
-        
+
+
+        public async Task<IEnumerable<StudentEducationInfoSlim>> FilterStudentInfo(string title, CancellationToken cancellationToken = default)
+        {
+            var requestStringTemplate = "?$format=json" +
+                                        "&$expand=ПрограммаОбучения,Слушатель,ГруппаСлушателя,ПодгруппаСлушателя" +
+                                        "&$select=ПрограммаОбучения/Ref_Key," +
+                                        "ПрограммаОбучения/Description," +
+                                        "Слушатель/Ref_Key," +
+                                        "Слушатель/Description," +
+                                        "ГруппаСлушателя/Ref_Key," +
+                                        "ГруппаСлушателя/Description," +
+                                        "ПодгруппаСлушателя/Ref_Key," +
+                                        "ПодгруппаСлушателя/Description" +
+                                        $"&$filter=(DeletionMark eq false) and (substringof('{title}', Слушатель/Description))";
+
+            var result = await GetByQuery<StudentEducationInfoSlim>(requestStringTemplate, cancellationToken);
+
+            return result;
+        }
+
+
+
         private IEnumerable<string> GetQueryStringArray(IEnumerable<Guid> students)
         {
             if (students == null || students.Count() == 0) return new List<string>();
