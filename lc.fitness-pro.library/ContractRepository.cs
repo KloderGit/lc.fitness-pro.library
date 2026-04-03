@@ -81,6 +81,8 @@ namespace lc.fitnesspro.library
                 "Слушатель/Description," +
                 "ГруппаСлушателя/Ref_Key," +
                 "ГруппаСлушателя/Description," +
+                "ГруппаСлушателя/ДатаНачалаОбучения," +
+                "ГруппаСлушателя/ДатаокончанияОбучения," +
                 "ПодгруппаСлушателя/Ref_Key," +
                 "ПодгруппаСлушателя/Description" +
                 "&$filter=(DeletionMark eq false)" +
@@ -110,6 +112,8 @@ namespace lc.fitnesspro.library
                                         "Слушатель/Description," +
                                         "ГруппаСлушателя/Ref_Key," +
                                         "ГруппаСлушателя/Description," +
+                                        "ГруппаСлушателя/ДатаНачалаОбучения," +
+                                        "ГруппаСлушателя/ДатаокончанияОбучения," +
                                         "ПодгруппаСлушателя/Ref_Key," +
                                         "ПодгруппаСлушателя/Description" +
                                         $"&$filter=(DeletionMark eq false) and (substringof('{title}', Слушатель/Description))";
